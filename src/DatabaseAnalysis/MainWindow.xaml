@@ -1,0 +1,73 @@
+﻿<Window x:Class="DatabaseAnalysis.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DatabaseAnalysis"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        
+        <StackPanel Grid.Row="1" Orientation="Vertical">
+            
+            <StackPanel Orientation="Horizontal">
+
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Server:" Width="80"/>
+                        <TextBox x:Name="TextBoxServer" Width="150"/>
+                    </StackPanel>
+                    <Separator Height="3"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Base name:" Width="80"/>
+                        <TextBox x:Name="TextBoxBaseName" Width="150"/>
+                    </StackPanel>
+                    <Separator Height="3"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="User DB:" Width="80"/>
+                        <TextBox x:Name="TextBoxUserDB" Width="150"/>
+                    </StackPanel>
+                    <Separator Height="3"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Password DB:" Width="80"/>
+                        <TextBox x:Name="TextBoxPasswordDB" Width="150"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <Separator Width="10"/>
+
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="URI" Width="80"/>
+                        <TextBox x:Name="TextBoxUri"  Width="150"/>
+                    </StackPanel>
+                    <Separator Height="3"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="User" Width="80"/>
+                        <TextBox x:Name="TextBoxUser" Width="150"/>
+                    </StackPanel>
+                    <Separator Height="3"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Password" Width="80"/>
+                        <TextBox x:Name="TextBoxPassword" Width="150"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+
+            <Separator Height="10"/>
+
+            <StackPanel Orientation="Vertical">
+
+                <Button x:Name="GetStructureDB" Content="Получить структуру баз данных" HorizontalAlignment="Center" Click="GetStructureDB_Click"/>
+
+            </StackPanel>
+            
+        </StackPanel>
+
+    </Grid>
+</Window>
