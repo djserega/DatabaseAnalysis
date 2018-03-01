@@ -46,5 +46,10 @@ namespace DatabaseAnalysis
 
         private string GetValueTextBox(TextBox element)
             => element.ToString();
+
+        private void MainButtonExit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }

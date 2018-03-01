@@ -5,16 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DatabaseAnalysis"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="525" Background="White">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="90"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <StackPanel Grid.Row="0" Grid.Column="2">
+            <Button x:Name="MainButtonExit" Content="X" Click="MainButtonExit_Click"/>
+        </StackPanel>
         
-        <StackPanel Grid.Row="1" Orientation="Vertical">
-            
+        <StackPanel Grid.Row="1" Orientation="Vertical" Grid.ColumnSpan="2">
+
             <StackPanel Orientation="Horizontal">
 
                 <StackPanel Orientation="Vertical">
@@ -66,7 +73,7 @@
                 <Button x:Name="GetStructureDB" Content="Получить структуру баз данных" HorizontalAlignment="Center" Click="GetStructureDB_Click"/>
 
             </StackPanel>
-            
+
         </StackPanel>
 
     </Grid>

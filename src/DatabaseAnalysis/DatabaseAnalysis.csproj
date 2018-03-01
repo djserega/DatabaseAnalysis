@@ -72,12 +72,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ConnectTo1C.cs" />
+    <Compile Include="ElementsFormConverter.cs" />
     <Compile Include="Forms\Base\List.xaml.cs">
       <DependentUpon>List.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\Base\Object.xaml.cs">
       <DependentUpon>Object.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\GeneralMethods.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -86,6 +88,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\PasswordBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Resources\TextBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -93,14 +99,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Base.cs" />
-    <Compile Include="Models\BaseStructureDB.cs" />
+    <Compile Include="Models\Structures\BaseStructureDB.cs" />
     <Compile Include="Models\BaseStructures.cs" />
     <Compile Include="Models\Enums.cs" />
     <Compile Include="JSON.cs" />
-    <Compile Include="Models\Fields.cs" />
-    <Compile Include="Models\Indexes.cs" />
-    <Compile Include="Models\ListStructureDB.cs" />
-    <Compile Include="Models\StructureDB.cs" />
+    <Compile Include="Models\Structures\Fields.cs" />
+    <Compile Include="Models\Structures\Indexes.cs" />
+    <Compile Include="Models\Structures\ListStructureDB.cs" />
+    <Compile Include="Models\Structures\StructureDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
