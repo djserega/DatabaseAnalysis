@@ -57,15 +57,17 @@ namespace DatabaseAnalysis
 
 #warning temp
 
-            string pathResult = Path.Combine(Environment.CurrentDirectory, "stucturedb.json");
-
-            using (StreamReader reader = new StreamReader(pathResult))
+            if (String.IsNullOrWhiteSpace(_uri))
             {
-                textResponse = reader.ReadToEnd();
+                string pathResult = Path.Combine(Environment.CurrentDirectory, "stucturedb.json");
+
+                using (StreamReader reader = new StreamReader(pathResult))
+                {
+                    textResponse = reader.ReadToEnd();
+                }
+
+                return textResponse;
             }
-
-            return textResponse;
-
 #warning temp
 
             WebRequest webRequest = WebRequest.Create(_uri);

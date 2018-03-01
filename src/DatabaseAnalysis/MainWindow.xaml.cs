@@ -41,7 +41,7 @@ namespace DatabaseAnalysis
             };
 
             List<StructureDB> structureDB = new ConnectTo1C(db, "1235679").GetStructureDB();
-
+            
         }
 
         private string GetValueTextBox(TextBox element)
