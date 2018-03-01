@@ -1,0 +1,33 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+
+namespace DatabaseAnalysis.Forms
+{
+    internal class GeneralMethods : Page
+    {
+        internal void SetBaseStyleDataGrid(ref DataGrid dataGrid)
+        {
+            //Style styleColumns = (Style)FindResource("DataGridColumnHeaderBase");
+
+            for (int i = 0; i < dataGrid.Columns.Count; i++)
+            {
+                //dataGrid.Columns[i].HeaderStyle = styleColumns;
+                dataGrid.Columns[i].Header = $"  {dataGrid.Columns[i].Header}  ";
+            }
+        }
+
+        internal void SetColumnHeader(ref DataGridAutoGeneratingColumnEventArgs e)
+            => e.Column.Header = ((PropertyDescriptor)e.PropertyDescriptor).DisplayName;
+
+        internal string GetValue(TextBox element)
+            => element.ToString();
+        internal string GetValue(PasswordBox element)
+            => element.ToString();
+    }
+}

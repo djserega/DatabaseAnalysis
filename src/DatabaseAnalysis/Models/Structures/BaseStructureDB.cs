@@ -17,5 +17,8 @@ namespace DatabaseAnalysis.Models
         public string Purpose { get; set; }
         public List<Fields> Fields { get; set; }
         public List<Indexes> Indexes { get; set; }
+
+        public long SizeTable { get; set; }
+        public long CountRecords { get; set; }
     }
 }
