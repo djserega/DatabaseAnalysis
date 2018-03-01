@@ -26,30 +26,16 @@ namespace DatabaseAnalysis
             InitializeComponent();
         }
 
-        private void GetStructureDB_Click(object sender, RoutedEventArgs e)
-        {
-
-            Base db = new Base()
-            {
-                Server = GetValueTextBox(TextBoxServer),
-                BaseName = GetValueTextBox(TextBoxBaseName),
-                UserDB = GetValueTextBox(TextBoxUserDB),
-                PasswordDB = GetValueTextBox(TextBoxPasswordDB),
-                URI = GetValueTextBox(TextBoxUri),
-                User = GetValueTextBox(TextBoxUser),
-                Password = GetValueTextBox(TextBoxPassword),
-            };
-
-            List<StructureDB> structureDB = new ConnectTo1C(db, "1235679").GetStructureDB();
-            
-        }
-
-        private string GetValueTextBox(TextBox element)
-            => element.ToString();
-
         private void MainButtonExit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void ButtonBase_Click(object sender, RoutedEventArgs e)
+        {
+            Forms.Base.Object form = new Forms.Base.Object();
+
+            FrameBase.Content = form;
         }
     }
 }

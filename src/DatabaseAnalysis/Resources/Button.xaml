@@ -4,18 +4,29 @@
                     xmlns:local="clr-namespace:DatabaseAnalysis.Resources">
 
     <Style TargetType="Button" x:Key="Base" BasedOn="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+        <Setter Property="HorizontalAlignment" Value="Left"/>
     </Style>
 
-    <Style TargetType="Button" x:Key="Exit" BasedOn="{StaticResource Base}">
-        <Setter Property="Content" Value="{iconPacks:Material Kind=WindowClose}"/>
+    <Style TargetType="Button" x:Key="MenuBase" BasedOn="{StaticResource Base}">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
 
-    <Style TargetType="Button" x:Key="Maximize" BasedOn="{StaticResource Base}">
-        <Setter Property="Content" Value="{iconPacks:Material Kind=WindowMaximize}"/>
+    <Style TargetType="Button" x:Key="Exit" BasedOn="{StaticResource MenuBase}">
+        <Setter Property="Content" Value="{iconPacks:Material Kind=WindowClose, Height=10}"/>
     </Style>
 
-    <Style TargetType="Button" x:Key="Minimize" BasedOn="{StaticResource Base}">
-        <Setter Property="Content" Value="{iconPacks:Material Kind=WindowMinimize}"/>
+    <Style TargetType="Button" x:Key="Maximize" BasedOn="{StaticResource MenuBase}">
+        <Setter Property="Content" Value="{iconPacks:Material Kind=WindowMaximize, Height=10}"/>
+    </Style>
+
+    <Style TargetType="Button" x:Key="Minimize" BasedOn="{StaticResource MenuBase}">
+        <Setter Property="Content" Value="{iconPacks:Material Kind=WindowMinimize, Height=3}"/>
+    </Style>
+
+    <Style TargetType="Button" x:Key="ButtonBase" BasedOn="{StaticResource Base}">
+        <Setter Property="Content" Value="Базы данных"/>
+        <Setter Property="Width" Value="90"/>
     </Style>
 
 </ResourceDictionary>
