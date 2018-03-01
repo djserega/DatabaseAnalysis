@@ -2,9 +2,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:DatabaseAnalysis.Resources">
 
-    <Style TargetType="TextBox" x:Key="TextBoxBase">
+    <Style TargetType="TextBox" x:Key="TextBoxBase" BasedOn="{StaticResource {x:Static ToolBar.TextBoxStyleKey}}">
         <Setter Property="Width" Value="175"/>
-        <Setter Property="Background" Value="Gainsboro"/>
+        <!--<Setter Property="Background" Value="Gainsboro"/>-->
     </Style>
 
     <Style TargetType="TextBox" x:Key="TextBoxCode" BasedOn="{StaticResource TextBoxBase}">

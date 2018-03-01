@@ -5,43 +5,48 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DatabaseAnalysis"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525" Background="White">
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        Title="MainWindow" Height="350" Width="525" Background="{DynamicResource WindowBackgroundBrush}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="155"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Grid.Column="2">
-            <Button x:Name="MainButtonExit" Content="X" Click="MainButtonExit_Click"/>
+        <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="MainButtonMinimize" Style="{StaticResource Minimize}" Click="MainButtonExit_Click"/>
+            <Separator Width="1"/>
+            <Button x:Name="MainButtonRestore" Style="{StaticResource Maximize}" Click="MainButtonExit_Click"/>
+            <Separator Width="1"/>
+            <Button x:Name="MainButtonExit" Style="{StaticResource Exit}"  Click="MainButtonExit_Click"/>
         </StackPanel>
-        
+
         <StackPanel Grid.Row="1" Orientation="Vertical" Grid.ColumnSpan="2">
 
             <StackPanel Orientation="Horizontal">
 
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="Server:" Width="80"/>
+                        <Label Content="Server:" Width="80" Style="{StaticResource LabelServer}"/>
                         <TextBox x:Name="TextBoxServer" Width="150"/>
                     </StackPanel>
                     <Separator Height="3"/>
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="Base name:" Width="80"/>
-                        <TextBox x:Name="TextBoxBaseName" Width="150"/>
+                        <Label Content="Base name:" Width="80" Style="{StaticResource LabelBaseName}"/>
+                        <TextBox x:Name="TextBoxBaseName" Width="150" Style="{StaticResource TextBoxBaseName}"/>
                     </StackPanel>
                     <Separator Height="3"/>
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="User DB:" Width="80"/>
+                        <Label Content="User DB:" Width="80" Style="{StaticResource LabelUserDB}"/>
                         <TextBox x:Name="TextBoxUserDB" Width="150"/>
                     </StackPanel>
                     <Separator Height="3"/>
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="Password DB:" Width="80"/>
+                        <Label Content="Password DB:" Width="80"  Style="{StaticResource LabelPasswordDB}"/>
                         <TextBox x:Name="TextBoxPasswordDB" Width="150"/>
                     </StackPanel>
                 </StackPanel>
@@ -50,7 +55,7 @@
 
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="URI" Width="80"/>
+                        <Label Content="URI" Width="80" Style="{StaticResource LabelURI}"/>
                         <TextBox x:Name="TextBoxUri"  Width="150"/>
                     </StackPanel>
                     <Separator Height="3"/>
@@ -73,6 +78,10 @@
                 <Button x:Name="GetStructureDB" Content="Получить структуру баз данных" HorizontalAlignment="Center" Click="GetStructureDB_Click"/>
 
             </StackPanel>
+
+            <DataGrid >
+
+            </DataGrid>
 
         </StackPanel>
 

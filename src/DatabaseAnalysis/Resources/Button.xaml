@@ -1,0 +1,21 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                    xmlns:local="clr-namespace:DatabaseAnalysis.Resources">
+
+    <Style TargetType="Button" x:Key="Base" BasedOn="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+    </Style>
+
+    <Style TargetType="Button" x:Key="Exit" BasedOn="{StaticResource Base}">
+        <Setter Property="Content" Value="{iconPacks:Material Kind=WindowClose}"/>
+    </Style>
+
+    <Style TargetType="Button" x:Key="Maximize" BasedOn="{StaticResource Base}">
+        <Setter Property="Content" Value="{iconPacks:Material Kind=WindowMaximize}"/>
+    </Style>
+
+    <Style TargetType="Button" x:Key="Minimize" BasedOn="{StaticResource Base}">
+        <Setter Property="Content" Value="{iconPacks:Material Kind=WindowMinimize}"/>
+    </Style>
+
+</ResourceDictionary>

@@ -2,9 +2,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:DatabaseAnalysis.Resources">
     
-    <Style TargetType="Label" x:Key="LabelBase">
+    <Style TargetType="Label" x:Key="LabelBase" BasedOn="{StaticResource {x:Type Label}}">
         <Setter Property="Width" Value="110"/>
-        <Setter Property="Background" Value="Gainsboro"/>
+        <!--<Setter Property="Background" Value="Gainsboro"/>-->
     </Style>
 
     <Style TargetType="Label" x:Key="LabelCode" BasedOn="{StaticResource LabelBase}">
