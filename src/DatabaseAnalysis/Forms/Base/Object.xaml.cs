@@ -93,5 +93,14 @@ namespace DatabaseAnalysis.Forms.Base
 
         }
 
+        private void GetCountRecords_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void GetSizeTable_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

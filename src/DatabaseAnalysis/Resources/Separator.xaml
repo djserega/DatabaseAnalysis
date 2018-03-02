@@ -8,7 +8,7 @@
                     >
 
     <Style TargetType="Separator" x:Key="Base">
-        
+        <Setter Property="Background" Value="{x:Null}"/>
     </Style>
 
     <Style TargetType="Separator" x:Key="SeparatorBetwenElementVertical" BasedOn="{StaticResource Base}">
@@ -17,6 +17,14 @@
 
     <Style TargetType="Separator" x:Key="SeparatorBetwenElementHorizontal" BasedOn="{StaticResource Base}">
         <Setter Property="Width" Value="3"/>
+    </Style>
+
+    <Style TargetType="Separator" x:Key="SeparatorBetwenElementHorizontal5" BasedOn="{StaticResource Base}">
+        <Setter Property="Width" Value="5"/>
+    </Style>
+
+    <Style TargetType="Separator" x:Key="SeparatorBetwenElementHorizontal10" BasedOn="{StaticResource Base}">
+        <Setter Property="Width" Value="10"/>
     </Style>
 
 </ResourceDictionary>
