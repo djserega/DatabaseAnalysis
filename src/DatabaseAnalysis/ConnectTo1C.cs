@@ -61,7 +61,7 @@ namespace DatabaseAnalysis
             {
                 string pathResult = Path.Combine(Environment.CurrentDirectory, "stucturedb.json");
 
-                using (StreamReader reader = new StreamReader(pathResult))
+                using (StreamReader reader = new StreamReader(pathResult, Encoding.Default))
                 {
                     textResponse = reader.ReadToEnd();
                 }

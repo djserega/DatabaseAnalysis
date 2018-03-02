@@ -1,0 +1,22 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:DatabaseAnalysis.Resources"
+                    
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+
+                    >
+
+    <Style TargetType="Separator" x:Key="Base">
+        
+    </Style>
+
+    <Style TargetType="Separator" x:Key="SeparatorBetwenElementVertical" BasedOn="{StaticResource Base}">
+        <Setter Property="Width" Value="1"/>
+    </Style>
+
+    <Style TargetType="Separator" x:Key="SeparatorBetwenElementHorizontal" BasedOn="{StaticResource Base}">
+        <Setter Property="Width" Value="3"/>
+    </Style>
+
+</ResourceDictionary>

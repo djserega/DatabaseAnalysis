@@ -26,8 +26,8 @@ namespace DatabaseAnalysis.Forms
             => e.Column.Header = ((PropertyDescriptor)e.PropertyDescriptor).DisplayName;
 
         internal string GetValue(TextBox element)
-            => element.ToString();
+            => element.Text;
         internal string GetValue(PasswordBox element)
-            => element.ToString();
+            => element.Password;
     }
 }

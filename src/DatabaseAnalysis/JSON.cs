@@ -12,7 +12,10 @@ namespace DatabaseAnalysis
     {
         internal List<StructureDB> ConvertStructureDB(string inputText)
         {
-            var serializer = new JavaScriptSerializer();
+            var serializer = new JavaScriptSerializer
+            {
+                MaxJsonLength = inputText.Length
+            };
 
             var objectRequest = serializer.Deserialize<List<StructureDB>>(inputText);
 

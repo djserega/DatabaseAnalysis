@@ -7,43 +7,43 @@
         <!--<Setter Property="Background" Value="Gainsboro"/>-->
     </Style>
 
-    <Style TargetType="Label" x:Key="Code" BasedOn="{StaticResource Base}">
+    <Style TargetType="Label" x:Key="LabelCode" BasedOn="{StaticResource Base}">
         <Setter Property="Content" Value="Код"/>
     </Style>
 
-    <Style TargetType="Label" x:Key="Name" BasedOn="{StaticResource Base}">
+    <Style TargetType="Label" x:Key="LabelName" BasedOn="{StaticResource Base}">
         <Setter Property="Content" Value="Наименование"/>
     </Style>
 
-    <Style TargetType="Label" x:Key="Comment" BasedOn="{StaticResource Base}">
+    <Style TargetType="Label" x:Key="LabelComment" BasedOn="{StaticResource Base}">
         <Setter Property="Content" Value="Комментарий"/>
     </Style>
 
-    <Style TargetType="Label" x:Key="Server" BasedOn="{StaticResource Base}">
+    <Style TargetType="Label" x:Key="LabelServer" BasedOn="{StaticResource Base}">
         <Setter Property="Content" Value="Сервер"/>
     </Style>
 
-    <Style TargetType="Label" x:Key="BaseName" BasedOn="{StaticResource Base}">
+    <Style TargetType="Label" x:Key="LabelBaseName" BasedOn="{StaticResource Base}">
         <Setter Property="Content" Value="Имя базы"/>
     </Style>
 
-    <Style TargetType="Label" x:Key="UserDB" BasedOn="{StaticResource Base}">
+    <Style TargetType="Label" x:Key="LabelUserDB" BasedOn="{StaticResource Base}">
         <Setter Property="Content" Value="Пользователь БД"/>
     </Style>
 
-    <Style TargetType="Label" x:Key="PasswordDB" BasedOn="{StaticResource Base}">
+    <Style TargetType="Label" x:Key="LabelPasswordDB" BasedOn="{StaticResource Base}">
         <Setter Property="Content" Value="Пароль БД"/>
     </Style>
 
-    <Style TargetType="Label" x:Key="URI" BasedOn="{StaticResource Base}">
+    <Style TargetType="Label" x:Key="LabelURI" BasedOn="{StaticResource Base}">
         <Setter Property="Content" Value="URL"/>
     </Style>
 
-    <Style TargetType="Label" x:Key="User" BasedOn="{StaticResource Base}">
+    <Style TargetType="Label" x:Key="LabelUser" BasedOn="{StaticResource Base}">
         <Setter Property="Content" Value="Пользователь"/>
     </Style>
 
-    <Style TargetType="Label" x:Key="Password" BasedOn="{StaticResource Base}">
+    <Style TargetType="Label" x:Key="LabelPassword" BasedOn="{StaticResource Base}">
         <Setter Property="Content" Value="Пароль"/>
     </Style>
 

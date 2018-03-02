@@ -6,36 +6,43 @@
         xmlns:local="clr-namespace:DatabaseAnalysis"
         mc:Ignorable="d"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        Title="MainWindow" Height="350" Width="525" Background="{DynamicResource WindowBackgroundBrush}" WindowStyle="None">
+        Title="Анализ баз данных" Height="350" Width="600" 
+        MinHeight="350" MinWidth="600"
+        Background="{DynamicResource WindowBackgroundBrush}" WindowStyle="None">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="160"/>
+            <ColumnDefinition Width="70"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
             <!--<Button x:Name="MainButtonMinimize" Style="{StaticResource Minimize}" Click="MainButtonExit_Click"/>-->
             <Button x:Name="MainButtonMinimize" Content="{iconPacks:Material Kind=WindowMinimize, Height=3}" Height="20" Click="MainButtonExit_Click"/>
-            <Separator Width="1"/>
+            <Separator Width="3"/>
             <!--<Button x:Name="MainButtonRestore" Style="{StaticResource Maximize}" Click="MainButtonExit_Click"/>-->
             <Button x:Name="MainButtonRestore" Content="{iconPacks:Material Kind=WindowMaximize, Height=10}" Height="20" Click="MainButtonExit_Click"/>
-            <Separator Width="1"/>
-            <!--<Button x:Name="MainButtonExit" Style="{StaticResource Exit}" Click="MainButtonExit_Click"/>-->
+            <Separator Width="3" />
+            <!--<Button x:Name="MainButtonExit1" Style="{DynamicResource Exit}" Click="MainButtonExit_Click"/>-->
             <Button x:Name="MainButtonExit" Content="{iconPacks:Material Kind=WindowClose, Height=10}" Height="20" Click="MainButtonExit_Click"/>
+            <Separator Width="5"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="0" Grid.Column="1">
-            <!--<Button x:Name="ButtonBase" Style="{StaticResource ButtonBase}" Click="ButtonBase_Click"/>-->
-            <Button x:Name="ButtonBase" Content="Базы данных" Width="90" HorizontalAlignment="Left"
+        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical">
+            <Separator Height="1"/>
+            <StackPanel Orientation="Horizontal">
+                <Separator Width="5"/>
+                <!--<Button x:Name="ButtonBase" Style="{StaticResource ButtonBase}" Click="ButtonBase_Click"/>-->
+                <Button x:Name="ButtonBase" Content="Базы данных" Width="90" HorizontalAlignment="Left"
                     Click="ButtonBase_Click"/>
+            </StackPanel>
         </StackPanel>
 
-        <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Orientation="Vertical">
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="3" Orientation="Vertical">
             <StackPanel>
                 <Frame x:Name="FrameBase"/>
             </StackPanel>

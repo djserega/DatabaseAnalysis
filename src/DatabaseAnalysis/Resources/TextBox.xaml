@@ -2,33 +2,33 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:DatabaseAnalysis.Resources">
 
-    <Style TargetType="TextBox" x:Key="TextBoxBase" BasedOn="{StaticResource {x:Static ToolBar.TextBoxStyleKey}}">
+    <Style TargetType="TextBox" x:Key="Base" BasedOn="{StaticResource {x:Static ToolBar.TextBoxStyleKey}}">
         <Setter Property="Width" Value="175"/>
         <!--<Setter Property="Background" Value="Gainsboro"/>-->
     </Style>
 
-    <Style TargetType="TextBox" x:Key="TextBoxCode" BasedOn="{StaticResource TextBoxBase}">
+    <Style TargetType="TextBox" x:Key="TextBoxCode" BasedOn="{StaticResource Base}">
     </Style>
 
-    <Style TargetType="TextBox" x:Key="TextBoxName" BasedOn="{StaticResource TextBoxBase}">
+    <Style TargetType="TextBox" x:Key="TextBoxName" BasedOn="{StaticResource Base}">
     </Style>
 
-    <Style TargetType="TextBox" x:Key="TextBoxComment" BasedOn="{StaticResource TextBoxBase}">
+    <Style TargetType="TextBox" x:Key="TextBoxComment" BasedOn="{StaticResource Base}">
     </Style>
 
-    <Style TargetType="TextBox" x:Key="TextBoxServer" BasedOn="{StaticResource TextBoxBase}">
+    <Style TargetType="TextBox" x:Key="TextBoxServer" BasedOn="{StaticResource Base}">
     </Style>
 
-    <Style TargetType="TextBox" x:Key="TextBoxBaseName" BasedOn="{StaticResource TextBoxBase}">
+    <Style TargetType="TextBox" x:Key="TextBoxBaseName" BasedOn="{StaticResource Base}">
     </Style>
 
-    <Style TargetType="TextBox" x:Key="TextBoxUserDB" BasedOn="{StaticResource TextBoxBase}">
+    <Style TargetType="TextBox" x:Key="TextBoxUserDB" BasedOn="{StaticResource Base}">
     </Style>
 
-    <Style TargetType="TextBox" x:Key="TextBoxURI" BasedOn="{StaticResource TextBoxBase}">
+    <Style TargetType="TextBox" x:Key="TextBoxURI" BasedOn="{StaticResource Base}">
     </Style>
 
-    <Style TargetType="TextBox" x:Key="TextBoxUser" BasedOn="{StaticResource TextBoxBase}">
+    <Style TargetType="TextBox" x:Key="TextBoxUser" BasedOn="{StaticResource Base}">
     </Style>
 
 </ResourceDictionary>
