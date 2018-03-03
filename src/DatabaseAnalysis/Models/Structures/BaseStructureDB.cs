@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,10 @@ namespace DatabaseAnalysis.Models
 {
     public class BaseStructureDB : IStructureDB
     {
-        
+
+        [Key]
+        public int Code { get; set; }
+
         public ICollection<BaseStructures> BaseStructures { get; set; }
 
         public string TableName { get; set; }

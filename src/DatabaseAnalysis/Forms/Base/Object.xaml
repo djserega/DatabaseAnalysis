@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:DatabaseAnalysis.Forms.Base"
       mc:Ignorable="d" 
       d:DesignHeight="400" d:DesignWidth="600"
-      Title="Object">
+      Title="База данных" x:Name="ObjectBase">
 
     <Grid>
 
@@ -31,7 +31,9 @@
 
                             <StackPanel Orientation="Horizontal">
                                 <Label Style="{StaticResource LabelCode}"/>
-                                <TextBox x:Name="TextBox" Style="{StaticResource TextBoxCode}"/>
+                                <Separator Style="{StaticResource SeparatorBetwenElementHorizontal}"/>
+                                <TextBox x:Name="TextBoxCode" Style="{StaticResource TextBoxCode}"
+                                         TextChanged="TextBoxCode_TextChanged"/>
                             </StackPanel>
 
                             <Separator Height="1"/>
@@ -46,6 +48,7 @@
 
                             <StackPanel Orientation="Horizontal">
                                 <Label Style="{StaticResource LabelUser}"/>
+                                <Separator Style="{StaticResource SeparatorBetwenElementHorizontal}"/>
                                 <TextBox x:Name="TextBoxUser" Style="{StaticResource TextBoxUser}"/>
                             </StackPanel>
 
@@ -53,6 +56,7 @@
 
                             <StackPanel Orientation="Horizontal">
                                 <Label Style="{StaticResource LabelPassword}"/>
+                                <Separator Style="{StaticResource SeparatorBetwenElementHorizontal}"/>
                                 <!--<PasswordBox x:Name="PasswordBoxPassword" Style="{StaticResource PasswordBoxPassword}"/>-->
                                 <TextBox x:Name="PasswordBoxPassword" Style="{StaticResource TextBoxUser}"/>
                             </StackPanel>
@@ -65,6 +69,7 @@
 
                             <StackPanel Orientation="Horizontal">
                                 <Label Style="{StaticResource LabelServer}"/>
+                                <Separator Style="{StaticResource SeparatorBetwenElementHorizontal}"/>
                                 <TextBox x:Name="TextBoxServer" Style="{StaticResource TextBoxServer}"/>
                             </StackPanel>
 
@@ -72,6 +77,7 @@
 
                             <StackPanel Orientation="Horizontal">
                                 <Label Style="{StaticResource LabelBaseName}"/>
+                                <Separator Style="{StaticResource SeparatorBetwenElementHorizontal}"/>
                                 <TextBox x:Name="TextBoxBaseName" Style="{StaticResource TextBoxBaseName}"/>
                             </StackPanel>
 
@@ -79,6 +85,7 @@
 
                             <StackPanel Orientation="Horizontal">
                                 <Label Style="{StaticResource LabelUserDB}"/>
+                                <Separator Style="{StaticResource SeparatorBetwenElementHorizontal}"/>
                                 <TextBox x:Name="TextBoxUserDB" Style="{StaticResource TextBoxUserDB}"/>
                             </StackPanel>
 
@@ -86,7 +93,8 @@
 
                             <StackPanel Orientation="Horizontal">
                                 <Label Style="{StaticResource LabelPasswordDB}"/>
-                                <!--<PasswordBox x:Name="PasswordBoxPasswordDB" Style="{StaticResource PasswordBoxPasswordDB}"/>-->
+                                <Separator Style="{StaticResource SeparatorBetwenElementHorizontal}"/>
+                                <!--<PasswordBox x:Name="PasswordBoxPasswordDB" Style="{StaticResource PasswordBoxPasswordDB>-->
                                 <TextBox x:Name="PasswordBoxPasswordDB" Style="{StaticResource TextBoxUserDB}"/>
                             </StackPanel>
 
@@ -98,6 +106,7 @@
 
                     <StackPanel Orientation="Horizontal">
                         <Label Style="{StaticResource LabelURI}"/>
+                        <Separator Style="{StaticResource SeparatorBetwenElementHorizontal}"/>
                         <TextBox x:Name="TextBoxURI" Style="{StaticResource TextBoxURI}" Width="470"/>
                     </StackPanel>
 
@@ -105,6 +114,7 @@
 
                     <StackPanel Orientation="Horizontal">
                         <Label Style="{StaticResource LabelComment}"/>
+                        <Separator Style="{StaticResource SeparatorBetwenElementHorizontal}"/>
                         <TextBox x:Name="TextBoxComment" Style="{StaticResource TextBoxComment}" Width="470"/>
                     </StackPanel>
 
@@ -115,17 +125,17 @@
                     <StackPanel Orientation="Vertical">
 
                         <Button x:Name="GetStructureDB" Content=" Получить структуру "
-                    Click="GetStructureDB_Click"/>
+                                Click="GetStructureDB_Click"/>
 
                         <Separator Style="{StaticResource SeparatorBetwenElementVertical}"/>
 
                         <Button x:Name="GetCountRecords" Content=" Количество записей "
-                        Click="GetCountRecords_Click"/>
+                                Click="GetCountRecords_Click"/>
 
                         <Separator Style="{StaticResource SeparatorBetwenElementVertical}"/>
 
                         <Button x:Name="GetSizeTable" Content=" Размеры таблиц " 
-                        Click="GetSizeTable_Click"/>
+                                Click="GetSizeTable_Click"/>
 
                     </StackPanel>
 

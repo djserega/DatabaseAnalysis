@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,8 +17,10 @@ namespace DatabaseAnalysis.Models
         List<Indexes> Indexes { get; set; }
     }
 
-    internal class StructureDB : IStructureDB
+    public class StructureDB : IStructureDB
     {
+        [Key]
+        public int Code { get; set; }
         public string StorageTableName { get; set; }        // ИмяТаблицыХранения
         public string TableName { get; set; }               // ИмяТаблицы
         public string Metadata { get; set; }                // Метаданные

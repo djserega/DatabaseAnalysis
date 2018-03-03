@@ -37,14 +37,22 @@
             <StackPanel Orientation="Horizontal">
                 <Separator Style="{StaticResource SeparatorBetwenElementHorizontal5}"/>
                 <!--<Button x:Name="ButtonBase" Style="{StaticResource ButtonBase}" Click="ButtonBase_Click"/>-->
-                <Button x:Name="ButtonBase" Content="Базы данных" Width="90" HorizontalAlignment="Left"
-                    Click="ButtonBase_Click"/>
+                <Button x:Name="ButtonBase" Content="Базы данных" Width="90"
+                        Click="ButtonBase_Click"/>
+                <Separator Style="{StaticResource SeparatorBetwenElementHorizontal5}"/>
+                <Button x:Name="ButtonCreate" Content="Создать" Width="90"
+                        Click="ButtonCreate_Click"/>
+                <Separator Style="{StaticResource SeparatorBetwenElementHorizontal5}"/>
+                <Button x:Name="ButtonEdit" Content="Изменить" Width="90"
+                        Click="ButtonEdit_Click"/>
             </StackPanel>
         </StackPanel>
 
+        <StackPanel x:Name="StackPanelOpened" Grid.Row="1" Grid.RowSpan="3" Orientation="Vertical"/>
+
         <StackPanel Grid.Row="2" Grid.ColumnSpan="3" Orientation="Vertical">
             <StackPanel>
-                <Frame x:Name="FrameBase" Width="700"/>
+                <Frame x:Name="FrameMain" Width="700"/>
             </StackPanel>
         </StackPanel>
 

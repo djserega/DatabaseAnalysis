@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using EF = DatabaseAnalysis.EntityFramework;
 
 namespace DatabaseAnalysis.Forms.Base
 {
@@ -20,9 +21,15 @@ namespace DatabaseAnalysis.Forms.Base
     /// </summary>
     public partial class List : Page
     {
-        public List()
+        private EF.IUnitOfWork _unitOfWork;
+
+        internal List(EF.IUnitOfWork unitOfWork, OpenFormEvents openFormEvents)
         {
             InitializeComponent();
+
+            _unitOfWork = unitOfWork;
+
+            DataContext = _unitOfWork.GetRepository<Models.Base>().GetList();
         }
     }
 }

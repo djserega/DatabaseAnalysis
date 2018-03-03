@@ -1,6 +1,7 @@
 ﻿using DatabaseAnalysis.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -48,6 +49,8 @@ namespace DatabaseAnalysis
             Token = token;
         }
 
+        #region Base
+
         internal List<StructureDB> GetStructureDB()
             => new Json().ConvertStructureDB(CallGet());
 
@@ -68,7 +71,6 @@ namespace DatabaseAnalysis
 
                 return textResponse;
             }
-#warning temp
 
             WebRequest webRequest = WebRequest.Create(_uri);
             webRequest.Credentials = new NetworkCredential(_base.User, _base.Password);
@@ -102,6 +104,54 @@ namespace DatabaseAnalysis
         {
             webRequest.Timeout = timeout * 1000;
             webRequest.ContentType = "application/json";
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Server
+
+        internal void GetSizeTable()
+        {
+
+            string queryString = "DECLARE @pagesizeKB int " +
+                "SELECT @pagesizeKB = low / 1024 FROM master.dbo.spt_values " +
+                "WHERE number = 1 AND type = 'E' " +
+                "SELECT table_name = OBJECT_NAME(o.id), " +
+                "rows = i1.rowcnt, " +
+                "reservedKB = (ISNULL(SUM(i1.reserved), 0) + ISNULL(SUM(i2.reserved), 0)) * @pagesizeKB, " +
+                "dataKB = (ISNULL(SUM(i1.dpages), 0) + ISNULL(SUM(i2.used), 0)) * @pagesizeKB, " +
+                "index_sizeKB = ((ISNULL(SUM(i1.used), 0) + ISNULL(SUM(i2.used), 0)) - (ISNULL(SUM(i1.dpages), 0) + ISNULL(SUM(i2.used), 0))) * @pagesizeKB, " +
+                "unusedKB = ((ISNULL(SUM(i1.reserved), 0) + ISNULL(SUM(i2.reserved), 0 - (ISNULL(SUM(i1.used), 0) + ISNULL(SUM(i2.used), 0))) * @pagesizeKB " +
+                "FROM sysobjects o " +
+                "LEFT OUTER JOIN sysindexes i1 ON i1.id = o.id AND i1.indid < 2 " +
+                "LEFT OUTER JOIN sysindexes i2 ON i2.id = o.id AND i2.indid = 255 " +
+                "WHERE OBJECTPROPERTY(o.id, N'IsUserTable') = 1--same as: o.xtype = 'IsView' " +
+                "OR(OBJECTPROPERTY(o.id, N'IsView') = 1 AND OBJECTPROPERTY(o.id, N'IsIndexed') = 1) " +
+                "GROUP BY o.id, i1.rowcnt " +
+                "ORDER BY 3 DESC";
+
+
+            //using (SqlConnection connection = new SqlConnection(_connectionPath))
+            //{
+            //    SqlCommand command = new SqlCommand(queryString, connection);
+            //    connection.Open();
+            //    SqlDataReader reader = command.ExecuteReader();
+
+            //    try
+            //    {
+
+            //    }
+            //    catch
+            //    {
+            //    }
+            //    finally
+            //    {
+            //        reader.Close();
+            //    }
+            //}
+
         }
 
         #endregion

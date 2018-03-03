@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Models = DatabaseAnalysis.Models;
+using EF = DatabaseAnalysis.EntityFramework;
 
 namespace DatabaseAnalysis.Forms.Base
 {
@@ -26,6 +26,8 @@ namespace DatabaseAnalysis.Forms.Base
 
         private Models.Base _ref;
         private int _id;
+
+        private EF.IUnitOfWork _unitOfWork;
 
         internal Models.Base Ref
         {
@@ -67,29 +69,42 @@ namespace DatabaseAnalysis.Forms.Base
             }
         }
 
+        private Object() { }
 
-        public Object()
+        internal Object(EF.IUnitOfWork unitOfWork, OpenFormEvents openFormEvents, int? id = null)
         {
             InitializeComponent();
 
-            this.DataContext = _ref;
+            _unitOfWork = unitOfWork;
+
+            var _repo = _unitOfWork.GetRepository<Models.Base>();
+
+            if (id is int _id)
+            {
+                _ref = _repo.GetFirstOrDefault(f => f.Code == _id);
+            }
+            else
+                _ref = new Models.Base();
+
+            DataContext = _ref;
+            _unitOfWork = unitOfWork;
         }
 
         private void GetStructureDB_Click(object sender, RoutedEventArgs e)
         {
 
-            Models.Base db = new Models.Base()
-            {
-                Server = gm.GetValue(TextBoxServer),
-                BaseName = gm.GetValue(TextBoxBaseName),
-                UserDB = gm.GetValue(TextBoxUserDB),
-                PasswordDB = gm.GetValue(PasswordBoxPasswordDB),
-                URI = gm.GetValue(TextBoxURI),
-                User = gm.GetValue(TextBoxUser),
-                Password = gm.GetValue(PasswordBoxPassword),
-            };
+            //Models.Base db = new Models.Base()
+            //{
+            //    Server = gm.GetValue(TextBoxServer),
+            //    BaseName = gm.GetValue(TextBoxBaseName),
+            //    UserDB = gm.GetValue(TextBoxUserDB),
+            //    PasswordDB = gm.GetValue(PasswordBoxPasswordDB),
+            //    URI = gm.GetValue(TextBoxURI),
+            //    User = gm.GetValue(TextBoxUser),
+            //    Password = gm.GetValue(PasswordBoxPassword),
+            //};
 
-            List<Models.StructureDB> structureDB = new ConnectTo1C(db, "1235679").GetStructureDB();
+            List<Models.StructureDB> structureDB = new ConnectTo1C(_ref, "1235679").GetStructureDB();
 
         }
 
@@ -100,7 +115,11 @@ namespace DatabaseAnalysis.Forms.Base
 
         private void GetSizeTable_Click(object sender, RoutedEventArgs e)
         {
+            new ConnectTo1C(_ref, "1235679").GetSizeTable();
+        }
 
+        private void TextBoxCode_TextChanged(object sender, TextChangedEventArgs e)
+        {
         }
     }
 }
