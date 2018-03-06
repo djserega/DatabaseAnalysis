@@ -92,20 +92,8 @@ namespace DatabaseAnalysis.Forms.Base
 
         private void GetStructureDB_Click(object sender, RoutedEventArgs e)
         {
-
-            //Models.Base db = new Models.Base()
-            //{
-            //    Server = gm.GetValue(TextBoxServer),
-            //    BaseName = gm.GetValue(TextBoxBaseName),
-            //    UserDB = gm.GetValue(TextBoxUserDB),
-            //    PasswordDB = gm.GetValue(PasswordBoxPasswordDB),
-            //    URI = gm.GetValue(TextBoxURI),
-            //    User = gm.GetValue(TextBoxUser),
-            //    Password = gm.GetValue(PasswordBoxPassword),
-            //};
-
             List<Models.StructureDB> structureDB = new ConnectTo1C(_ref, "1235679").GetStructureDB();
-
+            _ref.StructureDBToStructures(structureDB);
         }
 
         private void GetCountRecords_Click(object sender, RoutedEventArgs e)
@@ -118,8 +106,14 @@ namespace DatabaseAnalysis.Forms.Base
             new ConnectTo1C(_ref, "1235679").GetSizeTable();
         }
 
-        private void TextBoxCode_TextChanged(object sender, TextChangedEventArgs e)
+        private void ButtonSaveAndClose_Click(object sender, RoutedEventArgs e)
         {
+
+        }
+
+        private void ButtonSave_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
