@@ -10,13 +10,13 @@ namespace DatabaseAnalysis.EntityFramework
 {
     public class Context : DbContext
     {
-        protected override void OnModelCreating(DbModelBuilder modelBuilder) 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
             => base.OnModelCreating(modelBuilder);
+
 
         public DbSet<Base> Base { get; set; }
 
         public DbSet<BaseStructures> BaseStructures { get; set; }
-
 
         public DbSet<BaseStructureDB> BaseStructureDB { get; set; }
 
