@@ -24,5 +24,53 @@ namespace DatabaseAnalysis.Models
 
         public long SizeTable { get; set; }
         public long CountRecords { get; set; }
+
+
+        public BaseStructureDB()
+        {
+            Fields = new List<Fields>();
+            Indexes = new List<Indexes>();
+        }
+
+        public string this[string propertyName]
+        {
+            get
+            {
+                switch (propertyName)
+                {
+                    case "StorageTableName":
+                        return StorageTableName;
+                    case "TableName":
+                        return TableName;
+                    case "Metadata":
+                        return Metadata;
+                    case "Purpose":
+                        return Purpose;
+                    default:
+                        throw new NotImplementedException($"Получение свойства {propertyName} не реализовано.");
+                }
+            }
+            set
+            {
+                switch (propertyName)
+                {
+                    case "StorageTableName":
+                        StorageTableName = value;
+                        break;
+                    case "TableName":
+                        TableName = value;
+                        break;
+                    case "Metadata":
+                        Metadata = value;
+                        break;
+                    case "Purpose":
+                        Purpose = value;
+                        break;
+                    default:
+                        throw new NotImplementedException($"Установка свойства {propertyName} не реализовано.");
+                }
+            }
+        }
+
     }
 }
