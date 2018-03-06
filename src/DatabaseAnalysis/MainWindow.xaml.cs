@@ -57,7 +57,9 @@ namespace DatabaseAnalysis
 
         private void ButtonCreate_Click(object sender, RoutedEventArgs e)
         {
+            Forms.Base.Object form = new Forms.Base.Object(_unitOfWork, null);
 
+            FrameMain.Content = form;
         }
 
         private void ButtonEdit_Click(object sender, RoutedEventArgs e)
