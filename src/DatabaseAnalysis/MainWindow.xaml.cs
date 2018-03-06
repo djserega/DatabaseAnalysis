@@ -50,16 +50,12 @@ namespace DatabaseAnalysis
 
         private void ButtonBase_Click(object sender, RoutedEventArgs e)
         {
-            Forms.Base.List form = new Forms.Base.List(_unitOfWork, openFormEvents);
-
-            FrameMain.Content = form;
+            OpenForm("ListBase");
         }
 
         private void ButtonCreate_Click(object sender, RoutedEventArgs e)
         {
-            Forms.Base.Object form = new Forms.Base.Object(_unitOfWork, null);
-
-            FrameMain.Content = form;
+            OpenForm("ObjectBase");
         }
 
         private void ButtonEdit_Click(object sender, RoutedEventArgs e)
@@ -77,18 +73,18 @@ namespace DatabaseAnalysis
             if (!String.IsNullOrWhiteSpace(_listSheets.Find(f => f == nameForm)))
                 return;
 
-            Style styleOpenedForm;
-            Style styleCloseForm;
+
+            Style styleSeparatorBetwenElementHorizontal5;
             try
             {
-                styleOpenedForm = (Style)FindResource("ButtonMenuOpened");
-                styleCloseForm = (Style)FindResource("ButtonMenuOpenedClose");
+                styleSeparatorBetwenElementHorizontal5 = (Style)FindResource("SeparatorBetwenElementHorizontal5");
             }
             catch (ResourceReferenceKeyNotFoundException)
             {
                 Dialog.ShowMessage("Не удалось найти стиль оформления страницы открытого окна.");
                 return;
             }
+
 
             StackPanel stackPanel = new StackPanel()
             {
@@ -100,21 +96,32 @@ namespace DatabaseAnalysis
             {
                 Name = nameForm,
                 Content = caption,
-                Style = styleOpenedForm,
+                Width = 150
             };
             buttonOpenForm.Click += PressedButtonOpenForm;
 
             stackPanel.Children.Add(buttonOpenForm);
 
+
             Button buttonClose = new Button()
             {
-                Name = nameForm + "Close",
+                Name = nameForm + "Close",       
                 Content = "x",
-                Style = styleCloseForm
+                Width = 15
             };
             buttonClose.Click += PressetButtonCloseForm;
 
             stackPanel.Children.Add(buttonClose);
+
+
+            Separator separatorBetweenClose = new Separator()
+            {
+                Name = nameForm + "Separator",
+                Style = styleSeparatorBetwenElementHorizontal5
+            };
+
+            stackPanel.Children.Add(separatorBetweenClose);
+
 
             StackPanelOpened.Children.Add(stackPanel);
 
@@ -152,12 +159,14 @@ namespace DatabaseAnalysis
                 {
                     switch (formName)
                     {
-                        //case "ListRequest":
-                        //    form = new Forms.Base.List(openFormEvents);
-                        //    break;
-                        case "ObjectRequest":
+                        case "ListBase":
+                            form = new Forms.Base.List(_unitOfWork, openFormEvents);
+                            break;
+                        case "ObjectBase":
                             form = new Forms.Base.Object(_unitOfWork, openFormEvents);
                             break;
+                        default:
+                            return;
                     }
                 }
                 else

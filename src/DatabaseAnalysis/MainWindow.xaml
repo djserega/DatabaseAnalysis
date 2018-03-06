@@ -9,7 +9,7 @@
         Title="Анализ баз данных" Height="500" Width="700" 
         MinHeight="350" MinWidth="600"
         Background="{DynamicResource WindowBackgroundBrush}" WindowStyle="None">
-    <Grid>
+    <Grid x:Name="Grid"> 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="75"/>
@@ -48,11 +48,17 @@
             </StackPanel>
         </StackPanel>
 
-        <StackPanel x:Name="StackPanelOpened" Grid.Row="1" Grid.RowSpan="3" Orientation="Vertical"/>
+        <Separator Style="{StaticResource SeparatorBetwenElementVertical}"/>
 
+        <StackPanel x:Name="StackPanelOpened" Grid.Row="1" Orientation="Horizontal">
+            <Separator Style="{StaticResource SeparatorBetwenElementHorizontal5}"/>
+        </StackPanel>
+
+        <Separator Style="{StaticResource SeparatorBetwenElementVertical}"/>
+        
         <StackPanel Grid.Row="2" Grid.ColumnSpan="3" Orientation="Vertical">
             <StackPanel>
-                <Frame x:Name="FrameMain" Width="700"/>
+                <Frame x:Name="FrameMain" NavigationUIVisibility="Hidden" Width="{Binding Path=ActualWidth, ElementName=Grid, Converter={local:ElementsFormConverter}, ConverterParameter='10'}"/>
             </StackPanel>
         </StackPanel>
 
