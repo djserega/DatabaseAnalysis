@@ -25,7 +25,7 @@ namespace DatabaseAnalysis
 
         OpenFormEvents openFormEvents = new OpenFormEvents();
         LoadedFormEvents loadedFormEvents = new LoadedFormEvents();
-        private int _countMouseLeftBtnDown = 0;
+        //private int _countMouseLeftBtnDown = 0;
 
         #region Private fields
 

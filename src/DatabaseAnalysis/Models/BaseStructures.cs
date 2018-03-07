@@ -18,5 +18,10 @@ namespace DatabaseAnalysis.Models
 
         public ICollection<BaseStructureDB> StructureDB { get; set; }
 
+        public BaseStructures()
+        {
+            StructureDB = new List<BaseStructureDB>();
+        }
+
     }
 }
