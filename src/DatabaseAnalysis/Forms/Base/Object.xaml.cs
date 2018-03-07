@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using EF = DatabaseAnalysis.EntityFramework;
+using DatabaseAnalysis;
 
 namespace DatabaseAnalysis.Forms.Base
 {
@@ -25,6 +26,7 @@ namespace DatabaseAnalysis.Forms.Base
         private GeneralMethods gm = new GeneralMethods();
 
         private Models.Base _ref;
+        private ICollection<Models.BaseStructures> _structures;
         private int _id;
 
         private EF.IUnitOfWork _unitOfWork;
@@ -76,20 +78,31 @@ namespace DatabaseAnalysis.Forms.Base
             InitializeComponent();
 
             _unitOfWork = unitOfWork;
+            _structures = new List<Models.BaseStructures>();
 
-            var _repo = _unitOfWork.GetRepository<Models.Base>();
+            var _repoBase = _unitOfWork.GetRepository<Models.Base>();
+            var _repoStructures = _unitOfWork.GetRepository<Models.BaseStructures>();
 
             if (id is int _id)
             {
-                _ref = _repo.GetFirstOrDefault(f => f.Code == _id);
+                _ref = _repoBase.GetFirstOrDefault(f => f.Code == _id);
+                _id = _ref.Code;
+
+                ICollection<Models.BaseStructures> structures = _repoStructures.GetList(f => f.Base.Code == _ref.Code);
+                new Mapping<ICollection<Models.BaseStructures>, ICollection<Models.BaseStructures>>().MappingObject(structures, _structures);
+
+
+
+                Title += $" {_ref.Name}";
             }
             else
+            {
                 _ref = new Models.Base();
+                Title += " (новый)";
+            }
 
             DataContext = _ref;
             _unitOfWork = unitOfWork;
-
-            _ref.Name = "test";
         }
 
         private void GetStructureDB_Click(object sender, RoutedEventArgs e)
@@ -115,7 +128,31 @@ namespace DatabaseAnalysis.Forms.Base
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
+            SaveObject();
+        }
 
+        private bool SaveObject()
+        {
+            try
+            {
+                var repo = _unitOfWork.GetRepository<Models.Base>();
+
+                _ref.LastModified = DateTime.Now;
+
+                if (_id == 0)
+                    repo.Insert(_ref);
+                else
+                    repo.Update(_ref);
+
+                _unitOfWork.SaveChanges();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Dialog.ShowMessage(ex.Message);
+                return false;
+            }
         }
     }
 }

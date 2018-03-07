@@ -5,19 +5,21 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:DatabaseAnalysis.Forms.Base"
       mc:Ignorable="d" 
-      d:DesignHeight="400" d:DesignWidth="600"
+      d:DesignHeight="400" d:DesignWidth="750"
       Title="Список баз данных" x:Name="ListBase">
 
-    <Grid>
+    <Grid VerticalAlignment="Top">
 
-        <DataGrid IsReadOnly="True">
+        <DataGrid x:Name="DataGridList" IsReadOnly="True" ItemsSource="{Binding _baseList}" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Код"/>
-                <DataGridTextColumn Header="Наименование"/>
-                <DataGridTextColumn Header="Комментарий"/>
-                <DataGridTextColumn Header="Дата последнего обновления"/>
+                <DataGridTextColumn Header="Код" Binding="{Binding Code}" MaxWidth="50"/>
+                <DataGridTextColumn Header="Наименование" Binding="{Binding Name}" MaxWidth="150"/>
+                <DataGridTextColumn Header="Комментарий" Binding="{Binding Comment}" MaxWidth="250"/>
+                <DataGridTextColumn Header="URI" Binding="{Binding URI}" MaxWidth="150"/>
+                <DataGridTextColumn Header="Последнее обновление" Binding="{Binding LastModified, StringFormat=\{0:dd.MM.yy HH:mm:ss\}}"
+                                    MaxWidth="125"/>
             </DataGrid.Columns>
         </DataGrid>
-        
+
     </Grid>
 </Page>

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:DatabaseAnalysis"
         mc:Ignorable="d"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        Title="Анализ баз данных" Height="500" Width="700" 
+        Title="Анализ баз данных" Height="500" Width="800" 
         MinHeight="350" MinWidth="600"
         Background="{DynamicResource WindowBackgroundBrush}" WindowStyle="None">
     <Grid x:Name="Grid"> 

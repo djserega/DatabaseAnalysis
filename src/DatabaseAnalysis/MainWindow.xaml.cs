@@ -35,7 +35,6 @@ namespace DatabaseAnalysis
 
         #endregion
 
-
         public MainWindow()
         {
             InitializeComponent();
@@ -60,9 +59,17 @@ namespace DatabaseAnalysis
 
         private void ButtonEdit_Click(object sender, RoutedEventArgs e)
         {
-
+            if (FrameMain.Content != null)
+            {
+                if (FrameMain.Content is Forms.Base.List formList)
+                {
+                    if (formList.DataGridList.SelectedItem is Base objectBase)
+                    {
+                        OpenForm("ObjectBase", objectBase.Code);
+                    }
+                }
+            }
         }
-
 
         #region Open forms
 
@@ -146,7 +153,7 @@ namespace DatabaseAnalysis
 
         #region Change frame
 
-        private void OpenForm(string formName)
+        private void OpenForm(string formName, int? code = null)
         {
             if (FindPageName(formName) == null)
                 openFormEvents.OpenForm += OpenOtherForm;
@@ -163,7 +170,7 @@ namespace DatabaseAnalysis
                             form = new Forms.Base.List(_unitOfWork, openFormEvents);
                             break;
                         case "ObjectBase":
-                            form = new Forms.Base.Object(_unitOfWork, openFormEvents);
+                            form = new Forms.Base.Object(_unitOfWork, openFormEvents, code);
                             break;
                         default:
                             return;
@@ -175,8 +182,6 @@ namespace DatabaseAnalysis
                 form.Loaded += OpenForm_Loaded;
                 AddPageInListPages(formName, form);
             }
-            //else
-            //    form.Loaded -= OpenForm_Loaded;
 
             if (form != null)
                 FrameMain.Content = form;
@@ -240,10 +245,13 @@ namespace DatabaseAnalysis
                 var childrenElement = StackPanelOpened.Children;
                 for (int i = 0; i < childrenElement.Count; i++)
                 {
-                    if (((StackPanel)childrenElement[i]).Name == formNameClose)
+                    if (childrenElement[i] is StackPanel)
                     {
-                        childrenElement.RemoveAt(i);
-                        break;
+                        if (((StackPanel)childrenElement[i]).Name == formNameClose)
+                        {
+                            childrenElement.RemoveAt(i);
+                            break;
+                        }
                     }
                 }
             }
@@ -252,7 +260,6 @@ namespace DatabaseAnalysis
         #endregion
 
         #endregion
-
 
     }
 }

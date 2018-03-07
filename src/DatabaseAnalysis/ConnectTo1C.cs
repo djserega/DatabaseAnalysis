@@ -78,17 +78,24 @@ namespace DatabaseAnalysis
             webRequest.Method = "get";
             SetParameterWebRequest(ref webRequest, timeout);
 
-            using (WebResponse response = webRequest.GetResponse())
+            try
             {
-                Stream stream = response.GetResponseStream();
-
-                if (stream.CanRead)
+                using (WebResponse response = webRequest.GetResponse())
                 {
-                    StreamReader streamReader = new StreamReader(stream);
-                    textResponse = streamReader.ReadToEnd();
-                }
-            }
+                    Stream stream = response.GetResponseStream();
 
+                    if (stream.CanRead)
+                    {
+                        StreamReader streamReader = new StreamReader(stream);
+                        textResponse = streamReader.ReadToEnd();
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Dialog.ShowMessage($"Не удалось получить структуру БД.\n{ex.Message}");
+            }
             return textResponse;
         }
 

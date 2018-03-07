@@ -15,7 +15,13 @@ namespace DatabaseAnalysis
     {
         internal Mapping()
         {
-            Mapper.Initialize(f => f.CreateMap<TSource, TDestination>());
+            try
+            {
+                Mapper.Initialize(f => f.CreateMap<TSource, TDestination>());
+            }
+            catch (Exception)
+            {
+            }
         }
 
         internal void MappingObject(TSource source, TDestination destination)

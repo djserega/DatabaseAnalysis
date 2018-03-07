@@ -23,13 +23,18 @@ namespace DatabaseAnalysis.Forms.Base
     {
         private EF.IUnitOfWork _unitOfWork;
 
+        private ICollection<Models.Base> _baseList { get; set; }
+
         internal List(EF.IUnitOfWork unitOfWork, OpenFormEvents openFormEvents)
         {
             InitializeComponent();
 
             _unitOfWork = unitOfWork;
 
-            DataContext = _unitOfWork.GetRepository<Models.Base>().GetList();
+            _baseList = _unitOfWork.GetRepository<Models.Base>().GetList();
+
+            DataContext = _baseList;
+            DataGridList.ItemsSource = _baseList;
         }
     }
 }

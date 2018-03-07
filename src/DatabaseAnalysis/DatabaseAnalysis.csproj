@@ -171,6 +171,10 @@
     <Compile Include="Migrations\201803071307208_initialize.Designer.cs">
       <DependentUpon>201803071307208_initialize.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803072023168__1.cs" />
+    <Compile Include="Migrations\201803072023168__1.Designer.cs">
+      <DependentUpon>201803072023168__1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Base.cs" />
     <Compile Include="Models\Structures\BaseStructureDB.cs" />
@@ -197,6 +201,9 @@
     </Compile>
     <EmbeddedResource Include="Migrations\201803071307208_initialize.resx">
       <DependentUpon>201803071307208_initialize.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803072023168__1.resx">
+      <DependentUpon>201803072023168__1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
