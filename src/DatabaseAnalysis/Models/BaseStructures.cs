@@ -16,6 +16,7 @@ namespace DatabaseAnalysis.Models
 
         public DateTime Date { get; set; }
 
-        public BaseStructureDB StructureDB { get; set; }
+        public ICollection<BaseStructureDB> StructureDB { get; set; }
+
     }
 }

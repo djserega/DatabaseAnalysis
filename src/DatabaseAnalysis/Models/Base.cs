@@ -113,35 +113,27 @@ namespace DatabaseAnalysis.Models
         {
             Structures.Clear();
 
-            PropertyInfo[] propertysStructureDB = typeof(BaseStructures).GetProperties();
-            PropertyInfo[] propertysBaseStructureDB = typeof(BaseStructureDB).GetProperties();
+            BaseStructures baseStructures = new BaseStructures
+            {
+                Base = this,
+                Date = DateTime.Now
+            };
+
+            List<BaseStructureDB> listBaseStructureDB = new List<BaseStructureDB>();
+
+            Mapping<StructureDB, BaseStructureDB> mapping = new Mapping<StructureDB, BaseStructureDB>();
 
             foreach (StructureDB itemStructureDB in list)
             {
-                BaseStructures baseStructures = new BaseStructures
-                {
-                    Base = this,
-                    Date = DateTime.Now
-                };
 
                 BaseStructureDB baseStructureDB = new BaseStructureDB();
 
-                foreach (PropertyInfo propInfo in propertysStructureDB)
-                {
-                    PropertyInfo propInfoBase = propertysBaseStructureDB.FirstOrDefault(f => f.Name == propInfo.Name);
+                mapping.MappingObject(itemStructureDB, baseStructureDB);
 
-                    if (propInfoBase != null)
-                    {
-                        if (propInfo.PropertyType == typeof(string))
-                        {
-                            baseStructureDB[propInfo.Name] = itemStructureDB[propInfo.Name];
-                        }
-                    }
-                }
-
-
-                Structures.Add(baseStructures);
+                listBaseStructureDB.Add(baseStructureDB);
             }
+            baseStructures.StructureDB = listBaseStructureDB;
+            Structures.Add(baseStructures);
         }
 
     }

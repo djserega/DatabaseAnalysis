@@ -88,6 +88,8 @@ namespace DatabaseAnalysis.Forms.Base
 
             DataContext = _ref;
             _unitOfWork = unitOfWork;
+
+            _ref.Name = "test";
         }
 
         private void GetStructureDB_Click(object sender, RoutedEventArgs e)

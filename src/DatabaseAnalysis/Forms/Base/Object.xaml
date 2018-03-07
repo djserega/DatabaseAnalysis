@@ -52,7 +52,7 @@
                                 <Label Style="{StaticResource LabelName}"/>
                                 <Separator Style="{StaticResource SeparatorBetwenElementHorizontal}"/>
                                 <TextBox x:Name="TextBoxName" Style="{StaticResource TextBoxName}"
-                                         Text="{Binding Path=Name}"/>
+                                         Text="{Binding Path=Name, Mode=TwoWay}"/>
                             </StackPanel>
 
                             <Separator Height="1"/>
