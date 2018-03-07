@@ -13,7 +13,7 @@ namespace DatabaseAnalysis.Models
         [Key]
         public int Code { get; set; }
 
-        public BaseStructures BaseStructures { get; set; }
+        public BaseStructures BaseStructure { get; set; }
 
         public string TableName { get; set; }
         public string StorageTableName { get; set; }

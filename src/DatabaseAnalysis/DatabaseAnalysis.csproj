@@ -167,9 +167,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Mapping.cs" />
-    <Compile Include="Migrations\201803032207323_initialize.cs" />
-    <Compile Include="Migrations\201803032207323_initialize.Designer.cs">
-      <DependentUpon>201803032207323_initialize.cs</DependentUpon>
+    <Compile Include="Migrations\201803071307208_initialize.cs" />
+    <Compile Include="Migrations\201803071307208_initialize.Designer.cs">
+      <DependentUpon>201803071307208_initialize.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Base.cs" />
@@ -195,8 +195,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201803032207323_initialize.resx">
-      <DependentUpon>201803032207323_initialize.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201803071307208_initialize.resx">
+      <DependentUpon>201803071307208_initialize.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -214,5 +214,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

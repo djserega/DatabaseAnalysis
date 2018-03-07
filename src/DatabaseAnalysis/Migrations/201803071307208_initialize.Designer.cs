@@ -13,7 +13,7 @@ namespace DatabaseAnalysis.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201803032207323_initialize"; }
+            get { return "201803071307208_initialize"; }
         }
         
         string IMigrationMetadata.Source

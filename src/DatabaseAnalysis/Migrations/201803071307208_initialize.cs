@@ -31,13 +31,10 @@ namespace DatabaseAnalysis.Migrations
                         Code = c.Int(nullable: false, identity: true),
                         Date = c.DateTime(nullable: false),
                         Base_Code = c.Int(),
-                        StructureDB_Code = c.Int(),
                     })
                 .PrimaryKey(t => t.Code)
                 .ForeignKey("dbo.Bases", t => t.Base_Code)
-                .ForeignKey("dbo.BaseStructureDBs", t => t.StructureDB_Code)
-                .Index(t => t.Base_Code)
-                .Index(t => t.StructureDB_Code);
+                .Index(t => t.Base_Code);
             
             CreateTable(
                 "dbo.BaseStructureDBs",
@@ -50,8 +47,11 @@ namespace DatabaseAnalysis.Migrations
                         Purpose = c.String(),
                         SizeTable = c.Long(nullable: false),
                         CountRecords = c.Long(nullable: false),
+                        BaseStructure_Code = c.Int(),
                     })
-                .PrimaryKey(t => t.Code);
+                .PrimaryKey(t => t.Code)
+                .ForeignKey("dbo.BaseStructures", t => t.BaseStructure_Code)
+                .Index(t => t.BaseStructure_Code);
             
             CreateTable(
                 "dbo.Fields",
@@ -109,14 +109,14 @@ namespace DatabaseAnalysis.Migrations
             DropForeignKey("dbo.Indexes", "BaseStructureDB_Code", "dbo.BaseStructureDBs");
             DropForeignKey("dbo.Fields", "Indexes_Code", "dbo.Indexes");
             DropForeignKey("dbo.Fields", "BaseStructureDB_Code", "dbo.BaseStructureDBs");
-            DropForeignKey("dbo.BaseStructures", "StructureDB_Code", "dbo.BaseStructureDBs");
+            DropForeignKey("dbo.BaseStructureDBs", "BaseStructure_Code", "dbo.BaseStructures");
             DropForeignKey("dbo.BaseStructures", "Base_Code", "dbo.Bases");
             DropIndex("dbo.Indexes", new[] { "StructureDB_Code" });
             DropIndex("dbo.Indexes", new[] { "BaseStructureDB_Code" });
             DropIndex("dbo.Fields", new[] { "StructureDB_Code" });
             DropIndex("dbo.Fields", new[] { "Indexes_Code" });
             DropIndex("dbo.Fields", new[] { "BaseStructureDB_Code" });
-            DropIndex("dbo.BaseStructures", new[] { "StructureDB_Code" });
+            DropIndex("dbo.BaseStructureDBs", new[] { "BaseStructure_Code" });
             DropIndex("dbo.BaseStructures", new[] { "Base_Code" });
             DropTable("dbo.StructureDBs");
             DropTable("dbo.Indexes");
