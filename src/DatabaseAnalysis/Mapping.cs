@@ -19,8 +19,9 @@ namespace DatabaseAnalysis
             {
                 Mapper.Initialize(f => f.CreateMap<TSource, TDestination>());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Dialog.ShowMessage(ex.Message);
             }
         }
 

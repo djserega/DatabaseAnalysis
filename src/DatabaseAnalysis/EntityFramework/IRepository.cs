@@ -26,9 +26,15 @@ namespace DatabaseAnalysis.EntityFramework
 
         void Insert(params TEntity[] entities);
 
+        void Insert(IEnumerable<TEntity> entities);
+
+
         void Update(TEntity entity);
 
         void Update(params TEntity[] entities);
+
+        void Update(IEnumerable<TEntity> entities);
+
 
         void Delete(object id);
 

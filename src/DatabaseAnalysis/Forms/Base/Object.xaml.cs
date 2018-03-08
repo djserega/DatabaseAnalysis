@@ -89,9 +89,10 @@ namespace DatabaseAnalysis.Forms.Base
                 _id = _ref.Code;
 
                 ICollection<Models.BaseStructures> structures = _repoStructures.GetList(f => f.Base.Code == _ref.Code);
-                new Mapping<ICollection<Models.BaseStructures>, ICollection<Models.BaseStructures>>().MappingObject(structures, _structures);
 
+                _structures = _ref.Structures;
 
+                DataGridBaseStructures.ItemsSource = _structures;
 
                 Title += $" {_ref.Name}";
             }
@@ -135,14 +136,21 @@ namespace DatabaseAnalysis.Forms.Base
         {
             try
             {
-                var repo = _unitOfWork.GetRepository<Models.Base>();
+                var repoBase = _unitOfWork.GetRepository<Models.Base>();
+                var repoStructure = _unitOfWork.GetRepository<Models.BaseStructures>();
 
                 _ref.LastModified = DateTime.Now;
 
-                if (_id == 0)
-                    repo.Insert(_ref);
+                if (_ref.Code == 0)
+                {
+                    repoBase.Insert(_ref);
+                    repoStructure.Insert(_ref.Structures);
+                }
                 else
-                    repo.Update(_ref);
+                {
+                    repoBase.Update(_ref);
+                    repoStructure.Update(_ref.Structures);
+                }
 
                 _unitOfWork.SaveChanges();
 
@@ -150,7 +158,7 @@ namespace DatabaseAnalysis.Forms.Base
             }
             catch (Exception ex)
             {
-                Dialog.ShowMessage(ex.Message);
+                Dialog.ShowMessage(ex.Message, 0);
                 return false;
             }
         }

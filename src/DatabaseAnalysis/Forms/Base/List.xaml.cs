@@ -33,7 +33,6 @@ namespace DatabaseAnalysis.Forms.Base
 
             _baseList = _unitOfWork.GetRepository<Models.Base>().GetList();
 
-            DataContext = _baseList;
             DataGridList.ItemsSource = _baseList;
         }
     }

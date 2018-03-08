@@ -107,7 +107,13 @@ namespace DatabaseAnalysis.EntityFramework
 
         public void Insert(IEnumerable<TEntity> entities) => _dbSet.AddRange(entities);
 
+
         public void Delete(TEntity entity) => _dbSet.Remove(entity);
+
+        public void Delete(object id)
+        {
+            _dbSet.Remove(Find(id));
+        }
 
         public void Delete(object id, string primaryKeyName)
         {
@@ -134,19 +140,28 @@ namespace DatabaseAnalysis.EntityFramework
 
         public void Delete(IEnumerable<TEntity> entities) => _dbSet.RemoveRange(entities);
 
+
         public void Update(TEntity entity)
         {
             _dbSet.Add(entity);
+            _dbContext.Entry(entity).State = EntityState.Modified;
         }
 
         public void Update(params TEntity[] entities)
         {
             _dbSet.AddRange(entities);
+
+            foreach (TEntity item in entities)
+                _dbContext.Entry(item).State = EntityState.Modified;
         }
 
-        public void Delete(object id)
+        public void Update(IEnumerable<TEntity> entities)
         {
-            _dbSet.Remove(Find(id));
+            _dbSet.AddRange(entities);
+
+            foreach (TEntity item in entities)
+                _dbContext.Entry(item).State = EntityState.Modified;
         }
+
     }
 }
