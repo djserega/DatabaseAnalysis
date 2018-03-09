@@ -25,9 +25,10 @@ namespace DatabaseAnalysis
 
         OpenFormEvents openFormEvents = new OpenFormEvents();
         LoadedFormEvents loadedFormEvents = new LoadedFormEvents();
-        private int _countMouseLeftBtnDown = 0;
 
         #region Private fields
+
+        private int _countMouseLeftBtnDown = 0;
 
         private EF.IUnitOfWork _unitOfWork;
         private Dictionary<string, Page> _listPage = new Dictionary<string, Page>();
@@ -36,6 +37,8 @@ namespace DatabaseAnalysis
         private bool _VisibilityElement_formBaseList;
 
         #endregion
+
+        #region Window events
 
         public MainWindow()
         {
@@ -46,7 +49,9 @@ namespace DatabaseAnalysis
             _unitOfWork = new EF.UnitOfWork<EF.Context>(new EF.Context());
         }
 
-        #region Main button
+        #endregion
+
+        #region Windows style button
 
         private void MainButtonMinimize_Click(object sender, RoutedEventArgs e)
         {
@@ -69,6 +74,8 @@ namespace DatabaseAnalysis
         }
 
         #endregion
+
+        #region Main menu
 
         private void ButtonBase_Click(object sender, RoutedEventArgs e)
         {
@@ -93,6 +100,24 @@ namespace DatabaseAnalysis
                 }
             }
         }
+
+        private void TextBlockTitle_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+
+            if (e.ChangedButton == MouseButton.Left)
+                _countMouseLeftBtnDown++;
+
+            if (_countMouseLeftBtnDown > 1)
+            {
+                ExpandWindowMainMenu();
+                _countMouseLeftBtnDown = 0;
+            }
+            else
+                ResetCountMouseLeftBtnDownAsync();
+        }
+
+        #endregion
 
         #region Open forms
 
@@ -285,28 +310,8 @@ namespace DatabaseAnalysis
         #endregion
 
         #endregion
-
-        private void TextBlockTitle_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            DragMove();
-
-            if (e.ChangedButton == MouseButton.Left)
-                _countMouseLeftBtnDown++;
-
-            if (_countMouseLeftBtnDown > 1)
-            {
-                ExpandWindowMainMenu();
-                _countMouseLeftBtnDown = 0;
-            }
-            else
-                ResetCountMouseLeftBtnDownAsync();
-        }
-
-        private async void ResetCountMouseLeftBtnDownAsync()
-        {
-            await OtherMethods.StartTimerPause(0.5);
-            _countMouseLeftBtnDown = 0;
-        }
+        
+        #region Frame
 
         private void FrameMain_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
@@ -315,10 +320,27 @@ namespace DatabaseAnalysis
             SetVisibleElementsForm();
         }
 
+        #endregion
+
+        #region Private methods
+
+        private async void ResetCountMouseLeftBtnDownAsync()
+        {
+            await OtherMethods.StartTimerPause(0.5);
+            _countMouseLeftBtnDown = 0;
+        }
+
+        #endregion
+
+        #region Visibility
+
         private void SetVisibleElementsForm()
         {
             ButtonCreate.Visibility = _VisibilityElement_formBaseList ? Visibility.Visible : Visibility.Hidden;
             ButtonEdit.Visibility = _VisibilityElement_formBaseList ? Visibility.Visible : Visibility.Hidden;
         }
+
+        #endregion
+
     }
 }
