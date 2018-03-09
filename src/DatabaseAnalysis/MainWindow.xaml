@@ -9,7 +9,7 @@
         Title="Анализ баз данных" Height="500" Width="800" 
         MinHeight="350" MinWidth="600"
         Background="{DynamicResource WindowBackgroundBrush}" WindowStyle="None">
-    <Grid x:Name="Grid"> 
+    <Grid x:Name="Grid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="75"/>
@@ -21,30 +21,29 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
-            <!--<Button x:Name="MainButtonMinimize" Style="{StaticResource Minimize}" Click="MainButtonExit_Click"/>-->
-            <Button x:Name="MainButtonMinimize" Content="{iconPacks:Material Kind=WindowMinimize, Height=3}" Height="20" Click="MainButtonExit_Click"/>
+            <Button x:Name="MainButtonMinimize" Content="{iconPacks:Material Kind=WindowMinimize, Height=3}" Height="20" Click="MainButtonMinimize_Click"/>
             <Separator Style="{StaticResource SeparatorBetwenElementHorizontal5}"/>
-            <!--<Button x:Name="MainButtonRestore" Style="{StaticResource Maximize}" Click="MainButtonExit_Click"/>-->
-            <Button x:Name="MainButtonRestore" Content="{iconPacks:Material Kind=WindowMaximize, Height=10}" Height="20" Click="MainButtonExit_Click"/>
+            <Button x:Name="MainButtonRestore" Content="{iconPacks:Material Kind=WindowMaximize, Height=10}" Height="20" Click="MainButtonRestore_Click"/>
             <Separator Style="{StaticResource SeparatorBetwenElementHorizontal5}"/>
-            <!--<Button x:Name="MainButtonExit1" Style="{DynamicResource Exit}" Click="MainButtonExit_Click"/>-->
             <Button x:Name="MainButtonExit" Content="{iconPacks:Material Kind=WindowClose, Height=10}" Height="20" Click="MainButtonExit_Click"/>
             <Separator Style="{StaticResource SeparatorBetwenElementHorizontal5}"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical">
-            <Separator Style="{StaticResource SeparatorBetwenElementVertical}"/>
-            <StackPanel Orientation="Horizontal">
-                <Separator Style="{StaticResource SeparatorBetwenElementHorizontal5}"/>
-                <!--<Button x:Name="ButtonBase" Style="{StaticResource ButtonBase}" Click="ButtonBase_Click"/>-->
-                <Button x:Name="ButtonBase" Content="Базы данных" Width="90"
-                        Click="ButtonBase_Click"/>
-                <Separator Style="{StaticResource SeparatorBetwenElementHorizontal5}"/>
-                <Button x:Name="ButtonCreate" Content="Создать" Width="90"
-                        Click="ButtonCreate_Click"/>
-                <Separator Style="{StaticResource SeparatorBetwenElementHorizontal5}"/>
-                <Button x:Name="ButtonEdit" Content="Изменить" Width="90"
-                        Click="ButtonEdit_Click"/>
+        <StackPanel x:Name="StackPanelTitle" Grid.Row="0" Grid.Column="0" Orientation="Vertical">
+            <StackPanel Orientation="Horizontal"  MouseLeftButtonDown="TextBlockTitle_MouseLeftButtonDown">
+                    <Separator Style="{StaticResource SeparatorBetwenElementVertical}"/>
+                    <TextBlock x:Name="TextBlockTitle"
+                               Width="{Binding Path=ActualWidth, ElementName=StackPanelTitle}">
+                    <Separator Style="{StaticResource SeparatorBetwenElementHorizontal}"/>
+                    <Button x:Name="ButtonBase" Content="Базы данных" Width="90"
+                            Click="ButtonBase_Click"/>
+                    <Separator Style="{StaticResource SeparatorBetwenElementHorizontal}"/>
+                    <Button x:Name="ButtonCreate" Content="Создать" Width="90"
+                            Click="ButtonCreate_Click"/>
+                    <Separator Style="{StaticResource SeparatorBetwenElementHorizontal}"/>
+                    <Button x:Name="ButtonEdit" Content="Изменить" Width="90"
+                            Click="ButtonEdit_Click"/>
+                </TextBlock>
             </StackPanel>
         </StackPanel>
 
@@ -55,10 +54,13 @@
         </StackPanel>
 
         <Separator Style="{StaticResource SeparatorBetwenElementVertical}"/>
-        
+
         <StackPanel Grid.Row="2" Grid.ColumnSpan="3" Orientation="Vertical">
             <StackPanel>
-                <Frame x:Name="FrameMain" NavigationUIVisibility="Hidden" Width="{Binding Path=ActualWidth, ElementName=Grid, Converter={local:ElementsFormConverter}, ConverterParameter='10'}"/>
+                <Frame x:Name="FrameMain" NavigationUIVisibility="Hidden" DataContextChanged="FrameMain_DataContextChanged"
+                       Width="{Binding Path=ActualWidth, ElementName=Grid, Converter={local:ElementsFormConverter}, ConverterParameter='10'}"
+                       />
+                <!--https://stackoverflow.com/questions/36384389/wpf-how-to-created-a-routed-event-for-content-changed-->
             </StackPanel>
         </StackPanel>
 

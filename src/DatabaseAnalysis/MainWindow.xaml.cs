@@ -25,7 +25,7 @@ namespace DatabaseAnalysis
 
         OpenFormEvents openFormEvents = new OpenFormEvents();
         LoadedFormEvents loadedFormEvents = new LoadedFormEvents();
-        //private int _countMouseLeftBtnDown = 0;
+        private int _countMouseLeftBtnDown = 0;
 
         #region Private fields
 
@@ -33,19 +33,42 @@ namespace DatabaseAnalysis
         private Dictionary<string, Page> _listPage = new Dictionary<string, Page>();
         private List<string> _listSheets = new List<string>();
 
+        private bool _VisibilityElement_formBaseList;
+
         #endregion
 
         public MainWindow()
         {
             InitializeComponent();
 
+            SetVisibleElementsForm();
+
             _unitOfWork = new EF.UnitOfWork<EF.Context>(new EF.Context());
+        }
+
+        #region Main button
+
+        private void MainButtonMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void MainButtonRestore_Click(object sender, RoutedEventArgs e)
+        {
+            ExpandWindowMainMenu();
+        }
+
+        private void ExpandWindowMainMenu()
+        {
+            WindowState = WindowState == WindowState.Normal ? WindowState.Maximized: WindowState.Normal;
         }
 
         private void MainButtonExit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
+
+        #endregion
 
         private void ButtonBase_Click(object sender, RoutedEventArgs e)
         {
@@ -112,7 +135,7 @@ namespace DatabaseAnalysis
 
             Button buttonClose = new Button()
             {
-                Name = nameForm + "Close",       
+                Name = nameForm + "Close",
                 Content = "x",
                 Width = 15
             };
@@ -184,7 +207,10 @@ namespace DatabaseAnalysis
             }
 
             if (form != null)
+            {
                 FrameMain.Content = form;
+                FrameMain.DataContext = form;
+            }
         }
 
         private void OpenForm_Loaded(object sender, RoutedEventArgs e)
@@ -233,10 +259,9 @@ namespace DatabaseAnalysis
 
             if (page != null)
             {
-                if (FrameMain.Content != null
-                    & FrameMain.Content is Page
-                    & ((Page)FrameMain.Content).Name == formName)
-                    FrameMain.Content = null;
+                if (FrameMain.Content is Page contentPage)
+                    if (contentPage.Name == formName)
+                        FrameMain.Content = null;
 
                 _listPage.Remove(formName);
                 _listSheets.Remove(_listSheets.Find(f => f == formName));
@@ -261,5 +286,39 @@ namespace DatabaseAnalysis
 
         #endregion
 
+        private void TextBlockTitle_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+
+            if (e.ChangedButton == MouseButton.Left)
+                _countMouseLeftBtnDown++;
+
+            if (_countMouseLeftBtnDown > 1)
+            {
+                ExpandWindowMainMenu();
+                _countMouseLeftBtnDown = 0;
+            }
+            else
+                ResetCountMouseLeftBtnDownAsync();
+        }
+
+        private async void ResetCountMouseLeftBtnDownAsync()
+        {
+            await OtherMethods.StartTimerPause(0.5);
+            _countMouseLeftBtnDown = 0;
+        }
+
+        private void FrameMain_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            _VisibilityElement_formBaseList = e.NewValue is Forms.Base.List;
+
+            SetVisibleElementsForm();
+        }
+
+        private void SetVisibleElementsForm()
+        {
+            ButtonCreate.Visibility = _VisibilityElement_formBaseList ? Visibility.Visible : Visibility.Hidden;
+            ButtonEdit.Visibility = _VisibilityElement_formBaseList ? Visibility.Visible : Visibility.Hidden;
+        }
     }
 }
