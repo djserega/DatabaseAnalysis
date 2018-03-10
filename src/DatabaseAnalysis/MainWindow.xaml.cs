@@ -65,7 +65,7 @@ namespace DatabaseAnalysis
 
         private void ExpandWindowMainMenu()
         {
-            WindowState = WindowState == WindowState.Normal ? WindowState.Maximized: WindowState.Normal;
+            WindowState = WindowState == WindowState.Normal ? WindowState.Maximized : WindowState.Normal;
         }
 
         private void MainButtonExit_Click(object sender, RoutedEventArgs e)
@@ -89,16 +89,7 @@ namespace DatabaseAnalysis
 
         private void ButtonEdit_Click(object sender, RoutedEventArgs e)
         {
-            if (FrameMain.Content != null)
-            {
-                if (FrameMain.Content is Forms.Base.List formList)
-                {
-                    if (formList.DataGridList.SelectedItem is Base objectBase)
-                    {
-                        OpenForm("ObjectBase", objectBase.Code);
-                    }
-                }
-            }
+            EditCurrentRowObjectBase();
         }
 
         private void TextBlockTitle_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -347,6 +338,17 @@ namespace DatabaseAnalysis
             _countMouseLeftBtnDown = 0;
         }
 
+        private void EditCurrentRowObjectBase()
+        {
+            if (FrameMain.Content is Forms.Base.List formList)
+            {
+                if (formList.DataGridList.SelectedItem is Base objectBase)
+                {
+                    OpenForm("ObjectBase", objectBase.Code);
+                }
+            }
+        }
+
         #endregion
 
         #region Visibility
@@ -356,6 +358,7 @@ namespace DatabaseAnalysis
             ButtonCreate.Visibility = _VisibilityElement_formBaseList ? Visibility.Visible : Visibility.Hidden;
             ButtonEdit.Visibility = _VisibilityElement_formBaseList ? Visibility.Visible : Visibility.Hidden;
         }
+
 
         #endregion
 

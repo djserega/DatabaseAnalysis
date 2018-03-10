@@ -58,8 +58,7 @@
             <StackPanel Orientation="Vertical">
                 <Separator Style="{StaticResource SeparatorBetwenElementVertical}"/>
                 <Frame x:Name="FrameMain" NavigationUIVisibility="Hidden" DataContextChanged="FrameMain_DataContextChanged"
-                       Width="{Binding Path=ActualWidth, ElementName=Grid, Converter={local:ElementsFormConverter}, ConverterParameter='10'}"
-                       />
+                       Width="{Binding Path=ActualWidth, ElementName=Grid, Converter={local:ElementsFormConverter}, ConverterParameter='10'}"/>
             </StackPanel>
         </StackPanel>
 
