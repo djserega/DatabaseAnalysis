@@ -185,9 +185,7 @@ namespace DatabaseAnalysis
 
             formName = formName.Substring(0, formName.Length - 5);
 
-            DeletePageInListPages(formName);
-
-            OpenLastPage();
+            CloseFormByName(formName);
         }
 
         #endregion
@@ -205,6 +203,7 @@ namespace DatabaseAnalysis
             if (form == null)
             {
                 openFormEvents.OpenForm += OpenOtherForm;
+                openFormEvents.CloseCurrentForm += OpenFormEvents_CloseCurrentForm;
 
                 if (formName.EndsWith("Base"))
                 {
@@ -232,6 +231,12 @@ namespace DatabaseAnalysis
                 FrameMain.Content = form;
                 FrameMain.DataContext = form;
             }
+        }
+
+        private void OpenFormEvents_CloseCurrentForm()
+        {
+            if (FrameMain.Content is Page currentPage)
+                CloseFormByName(currentPage.Name);
         }
 
         private void OpenForm_Loaded(object sender, RoutedEventArgs e)
@@ -348,6 +353,14 @@ namespace DatabaseAnalysis
                 }
             }
         }
+
+        private void CloseFormByName(string formName)
+        {
+            DeletePageInListPages(formName);
+
+            OpenLastPage();
+        }
+
 
         #endregion
 

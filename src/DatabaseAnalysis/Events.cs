@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 namespace DatabaseAnalysis
 {
     internal delegate void OpenFormName();
+    internal delegate void CloseCurrentFormEvent();
 
     internal class OpenFormEvents : EventArgs
     {
         internal event OpenFormName OpenForm;
+        internal event CloseCurrentFormEvent CloseCurrentForm;
 
         internal string PageName { get; set; }
         internal int Id { get; set; }
@@ -22,6 +24,15 @@ namespace DatabaseAnalysis
 
             OpenForm();
         }
+
+        internal void ClosingCurrentForm()
+        {
+            if (CloseCurrentForm == null)
+                return;
+
+            CloseCurrentForm();
+        }
+
     }
 
     internal delegate void LoadingForms();
@@ -40,5 +51,6 @@ namespace DatabaseAnalysis
 
             LoadingForms();
         }
+
     }
 }

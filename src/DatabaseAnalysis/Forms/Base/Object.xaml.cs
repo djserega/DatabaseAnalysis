@@ -23,6 +23,7 @@ namespace DatabaseAnalysis.Forms.Base
     public partial class Object : Page
     {
 
+        private OpenFormEvents _openFormEvents;
         private GeneralMethods gm = new GeneralMethods();
 
         private string _formNameOriginal = "ObjectBase";
@@ -81,6 +82,7 @@ namespace DatabaseAnalysis.Forms.Base
 
             _unitOfWork = unitOfWork;
             _structures = new List<Models.BaseStructures>();
+            _openFormEvents = openFormEvents;
 
             var _repoBase = _unitOfWork.GetRepository<Models.Base>();
             var _repoStructures = _unitOfWork.GetRepository<Models.BaseStructures>();
@@ -128,7 +130,8 @@ namespace DatabaseAnalysis.Forms.Base
 
         private void ButtonSaveAndClose_Click(object sender, RoutedEventArgs e)
         {
-
+            if (SaveObject())
+                _openFormEvents.ClosingCurrentForm();
         }
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
