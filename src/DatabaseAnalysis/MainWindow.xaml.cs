@@ -195,6 +195,8 @@ namespace DatabaseAnalysis
             formName = formName.Substring(0, formName.Length - 5);
 
             DeletePageInListPages(formName);
+
+            OpenLastPage();
         }
 
         #endregion
@@ -310,10 +312,19 @@ namespace DatabaseAnalysis
             }
         }
 
+        private void OpenLastPage()
+        {
+            if (_listPage.Count > 0)
+            {
+                string lastFormName = _listPage.Last().Key;
+                OpenForm(lastFormName);
+            }
+        }
+
         #endregion
 
         #endregion
-        
+
         #region Frame
 
         private void FrameMain_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
