@@ -315,10 +315,13 @@ namespace DatabaseAnalysis
         private void OpenLastPage()
         {
             if (_listPage.Count > 0)
-            {
-                string lastFormName = _listPage.Last().Key;
-                OpenForm(lastFormName);
-            }
+                OpenForm(_listPage.Last().Key);
+            else
+                FrameMain.Content = null;
+
+            _VisibilityElement_formBaseList = FrameMain.Content is Forms.Base.List;
+
+            SetVisibleElementsForm();
         }
 
         #endregion
