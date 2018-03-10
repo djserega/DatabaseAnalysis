@@ -21,16 +21,34 @@ namespace DatabaseAnalysis.Forms.Base
     /// </summary>
     public partial class List : Page
     {
+        private OpenFormEvents _openFormEvents;
+        private RefreshDataGridEvents _refreshDataGrid;
+
         private EF.IUnitOfWork _unitOfWork;
 
         private ICollection<Models.Base> _baseList { get; set; }
 
-        internal List(EF.IUnitOfWork unitOfWork, OpenFormEvents openFormEvents)
+        internal List(EF.IUnitOfWork unitOfWork, OpenFormEvents openFormEvents, RefreshDataGridEvents refreshDataGrid)
         {
             InitializeComponent();
 
             _unitOfWork = unitOfWork;
 
+            _openFormEvents = openFormEvents;
+            _refreshDataGrid = refreshDataGrid;
+
+            _refreshDataGrid.RefreshDataGrid += _refreshDataGrid_RefreshDataGrid;
+
+            SetItemSourceDataGrid();
+        }
+
+        private void _refreshDataGrid_RefreshDataGrid()
+        {
+            SetItemSourceDataGrid();
+        }
+
+        private void SetItemSourceDataGrid()
+        {
             _baseList = _unitOfWork.GetRepository<Models.Base>().GetList();
 
             DataGridList.ItemsSource = _baseList;

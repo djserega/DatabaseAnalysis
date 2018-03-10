@@ -24,6 +24,7 @@ namespace DatabaseAnalysis.Forms.Base
     {
 
         private OpenFormEvents _openFormEvents;
+        private RefreshDataGridEvents _refreshDataGrid;
         private GeneralMethods gm = new GeneralMethods();
 
         private string _formNameOriginal = "ObjectBase";
@@ -76,13 +77,15 @@ namespace DatabaseAnalysis.Forms.Base
 
         private Object() { }
 
-        internal Object(EF.IUnitOfWork unitOfWork, OpenFormEvents openFormEvents, int? id = null)
+        internal Object(EF.IUnitOfWork unitOfWork, OpenFormEvents openFormEvents, RefreshDataGridEvents refreshDataGrid, int? id = null)
         {
             InitializeComponent();
 
             _unitOfWork = unitOfWork;
             _structures = new List<Models.BaseStructures>();
+
             _openFormEvents = openFormEvents;
+            _refreshDataGrid = refreshDataGrid;
 
             var _repoBase = _unitOfWork.GetRepository<Models.Base>();
             var _repoStructures = _unitOfWork.GetRepository<Models.BaseStructures>();
@@ -156,10 +159,13 @@ namespace DatabaseAnalysis.Forms.Base
                 else
                 {
                     repoBase.Update(_ref);
-                    repoStructure.Update(_ref.Structures);
+                    if (_ref.Structures.Count > 0)
+                        repoStructure.Update(_ref.Structures);
                 }
 
                 _unitOfWork.SaveChanges();
+
+                _refreshDataGrid.EvokeRefreshDataGrid();
 
                 return true;
             }

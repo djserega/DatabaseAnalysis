@@ -23,8 +23,9 @@ namespace DatabaseAnalysis
     public partial class MainWindow : Window
     {
 
-        OpenFormEvents openFormEvents = new OpenFormEvents();
-        LoadedFormEvents loadedFormEvents = new LoadedFormEvents();
+        private OpenFormEvents _openFormEvents = new OpenFormEvents();
+        private LoadedFormEvents _loadedFormEvents = new LoadedFormEvents();
+        private RefreshDataGridEvents _refreshDataGrid = new RefreshDataGridEvents();
 
         #region Private fields
 
@@ -202,18 +203,18 @@ namespace DatabaseAnalysis
 
             if (form == null)
             {
-                openFormEvents.OpenForm += OpenOtherForm;
-                openFormEvents.CloseCurrentForm += OpenFormEvents_CloseCurrentForm;
+                _openFormEvents.OpenForm += OpenOtherForm;
+                _openFormEvents.CloseCurrentForm += OpenFormEvents_CloseCurrentForm;
 
                 if (formName.EndsWith("Base"))
                 {
                     switch (formName)
                     {
                         case "ListBase":
-                            form = new Forms.Base.List(_unitOfWork, openFormEvents);
+                            form = new Forms.Base.List(_unitOfWork, _openFormEvents, _refreshDataGrid);
                             break;
                         case "ObjectBase":
-                            form = new Forms.Base.Object(_unitOfWork, openFormEvents, code);
+                            form = new Forms.Base.Object(_unitOfWork, _openFormEvents, _refreshDataGrid , code);
                             break;
                         default:
                             return;
@@ -248,10 +249,10 @@ namespace DatabaseAnalysis
 
         internal void OpenOtherForm()
         {
-            if (String.IsNullOrWhiteSpace(openFormEvents.PageName))
+            if (String.IsNullOrWhiteSpace(_openFormEvents.PageName))
                 return;
 
-            OpenForm(openFormEvents.PageName);
+            OpenForm(_openFormEvents.PageName);
         }
 
         #endregion
