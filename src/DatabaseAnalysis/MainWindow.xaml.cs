@@ -203,13 +203,16 @@ namespace DatabaseAnalysis
 
         private void OpenForm(string formName, int? code = null)
         {
-            if (FindPageName(formName) == null)
-                openFormEvents.OpenForm += OpenOtherForm;
+            string pageName = formName;
+            if (code != null)
+                pageName += $"_{code}";
 
-            Page form = FindPageName(formName);
+            Page form = FindPageName(pageName);
 
             if (form == null)
             {
+                openFormEvents.OpenForm += OpenOtherForm;
+
                 if (formName.EndsWith("Base"))
                 {
                     switch (formName)
@@ -228,7 +231,7 @@ namespace DatabaseAnalysis
                     return;
 
                 form.Loaded += OpenForm_Loaded;
-                AddPageInListPages(formName, form);
+                AddPageInListPages(pageName, form);
             }
 
             if (form != null)

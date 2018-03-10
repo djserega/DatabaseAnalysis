@@ -30,7 +30,8 @@
         </StackPanel>
 
         <StackPanel x:Name="StackPanelTitle" Grid.Row="0" Grid.Column="0" Orientation="Vertical">
-            <StackPanel Orientation="Horizontal"  MouseLeftButtonDown="TextBlockTitle_MouseLeftButtonDown">
+            <Separator Style="{StaticResource SeparatorBetwenElementVertical}"/>
+            <StackPanel Orientation="Horizontal" MouseLeftButtonDown="TextBlockTitle_MouseLeftButtonDown">
                     <Separator Style="{StaticResource SeparatorBetwenElementVertical}"/>
                     <TextBlock x:Name="TextBlockTitle"
                                Width="{Binding Path=ActualWidth, ElementName=StackPanelTitle}">
@@ -47,20 +48,18 @@
             </StackPanel>
         </StackPanel>
 
-        <Separator Style="{StaticResource SeparatorBetwenElementVertical}"/>
-
-        <StackPanel x:Name="StackPanelOpened" Grid.Row="1" Orientation="Horizontal">
+        <StackPanel x:Name="StackPanelOpened" Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal">
             <Separator Style="{StaticResource SeparatorBetwenElementHorizontal5}"/>
         </StackPanel>
 
         <Separator Style="{StaticResource SeparatorBetwenElementVertical}"/>
 
         <StackPanel Grid.Row="2" Grid.ColumnSpan="3" Orientation="Vertical">
-            <StackPanel>
+            <StackPanel Orientation="Vertical">
+                <Separator Style="{StaticResource SeparatorBetwenElementVertical}"/>
                 <Frame x:Name="FrameMain" NavigationUIVisibility="Hidden" DataContextChanged="FrameMain_DataContextChanged"
                        Width="{Binding Path=ActualWidth, ElementName=Grid, Converter={local:ElementsFormConverter}, ConverterParameter='10'}"
                        />
-                <!--https://stackoverflow.com/questions/36384389/wpf-how-to-created-a-routed-event-for-content-changed-->
             </StackPanel>
         </StackPanel>
 

@@ -25,6 +25,9 @@ namespace DatabaseAnalysis.Forms.Base
 
         private GeneralMethods gm = new GeneralMethods();
 
+        private string _formNameOriginal = "ObjectBase";
+        private string _titleOriginal = "Базы данных";
+
         private Models.Base _ref;
         private ICollection<Models.BaseStructures> _structures;
         private int _id;
@@ -45,7 +48,6 @@ namespace DatabaseAnalysis.Forms.Base
                 }
             }
         }
-
         internal int? Id
         {
             get
@@ -101,6 +103,8 @@ namespace DatabaseAnalysis.Forms.Base
                 _ref = new Models.Base();
                 Title += " (новый)";
             }
+
+            SetFormSettings();
 
             DataContext = _ref;
             _unitOfWork = unitOfWork;
@@ -161,6 +165,21 @@ namespace DatabaseAnalysis.Forms.Base
                 Dialog.ShowMessage(ex.Message, 0);
                 return false;
             }
+        }
+
+        private void SetFormSettings()
+        {
+            if (String.IsNullOrWhiteSpace(_ref.Name))
+                Title = $"{_titleOriginal} {_ref.Name}";
+            else if (_ref.Code != 0)
+                Title = $"{_titleOriginal} {_ref.Code}";
+            else
+                Title = $"{_titleOriginal}";
+
+            if (_ref.Code == 0)
+                Name = $"{_formNameOriginal}";
+            else
+                Name = $"{_formNameOriginal}_{_ref.Code}";
         }
     }
 }
