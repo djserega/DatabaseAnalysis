@@ -14,7 +14,7 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0"/>
         <Grid Grid.Row="1">
-            <TextBlock Margin="5,5,5,30" x:Name="TextBlockMessage" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"/>
+            <TextBox IsReadOnly="True" Margin="5,5,5,30" x:Name="TextBlockMessage" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"/>
             <StackPanel VerticalAlignment="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,3">
                 <Button x:Name="ButtonOK" Content="ОК" Width="50"
                         Click="ButtonOK_Click"/>
