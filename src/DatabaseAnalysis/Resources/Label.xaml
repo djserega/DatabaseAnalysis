@@ -47,4 +47,8 @@
         <Setter Property="Content" Value="Пароль"/>
     </Style>
 
+    <Style TargetType="Label" x:Key="LabelDateModified" BasedOn="{StaticResource Base}">
+        <Setter Property="Content" Value="Дата изменения"/>
+    </Style>
+    
 </ResourceDictionary>
