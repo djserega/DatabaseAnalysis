@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:DatabaseAnalysis.Forms.Base"
       mc:Ignorable="d" 
-      d:DesignHeight="400" d:DesignWidth="600"
+      d:DesignHeight="400" d:DesignWidth="700"
       Title="База данных" x:Name="ObjectBase">
 
     <Grid>
@@ -25,6 +25,7 @@
 
                     <Separator Height="1"/>
 
+                    <!--Command panel-->
                     <StackPanel Orientation="Horizontal">
                         <Button x:Name="ButtonSaveAndClose" Content=" Сохранить и закрыть "
                                 Click="ButtonSaveAndClose_Click"/>
@@ -35,6 +36,7 @@
                     
                     <Separator Height="1"/>
 
+                    <!--Header elements-->
                     <StackPanel Orientation="Horizontal">
 
                         <StackPanel Orientation="Vertical">
@@ -42,8 +44,7 @@
                             <StackPanel Orientation="Horizontal">
                                 <Label Style="{StaticResource LabelCode}"/>
                                 <Separator Style="{StaticResource SeparatorBetwenElementHorizontal}"/>
-                                <TextBox x:Name="TextBoxCode" Style="{StaticResource TextBoxCode}"
-                                         Text="{Binding Path=Code}"/>
+                                <TextBox Style="{StaticResource TextBoxCode}" Text="{Binding Path=Code}"/>
                             </StackPanel>
 
                             <Separator Height="1"/>
@@ -51,8 +52,7 @@
                             <StackPanel Orientation="Horizontal">
                                 <Label Style="{StaticResource LabelName}"/>
                                 <Separator Style="{StaticResource SeparatorBetwenElementHorizontal}"/>
-                                <TextBox x:Name="TextBoxName" Style="{StaticResource TextBoxName}"
-                                         Text="{Binding Path=Name, Mode=TwoWay}"/>
+                                <TextBox Style="{StaticResource TextBoxName}" Text="{Binding Path=Name, Mode=TwoWay}"/>
                             </StackPanel>
 
                             <Separator Height="1"/>
@@ -60,8 +60,7 @@
                             <StackPanel Orientation="Horizontal">
                                 <Label Style="{StaticResource LabelUser}"/>
                                 <Separator Style="{StaticResource SeparatorBetwenElementHorizontal}"/>
-                                <TextBox x:Name="TextBoxUser" Style="{StaticResource TextBoxUser}"
-                                         Text="{Binding Path=User}"/>
+                                <TextBox Style="{StaticResource TextBoxUser}" Text="{Binding Path=User}"/>
                             </StackPanel>
 
                             <Separator Height="1"/>
@@ -70,8 +69,7 @@
                                 <Label Style="{StaticResource LabelPassword}"/>
                                 <Separator Style="{StaticResource SeparatorBetwenElementHorizontal}"/>
                                 <!--<PasswordBox x:Name="PasswordBoxPassword" Style="{StaticResource PasswordBoxPassword}"/>-->
-                                <TextBox x:Name="PasswordBoxPassword" Style="{StaticResource TextBoxUser}"
-                                         Text="{Binding Path=Password}"/>
+                                <TextBox Style="{StaticResource TextBoxUser}" Text="{Binding Path=Password}"/>
                             </StackPanel>
 
                         </StackPanel>
@@ -83,8 +81,7 @@
                             <StackPanel Orientation="Horizontal">
                                 <Label Style="{StaticResource LabelServer}"/>
                                 <Separator Style="{StaticResource SeparatorBetwenElementHorizontal}"/>
-                                <TextBox x:Name="TextBoxServer" Style="{StaticResource TextBoxServer}"
-                                         Text="{Binding Path=Server}"/>
+                                <TextBox Style="{StaticResource TextBoxServer}" Text="{Binding Path=Server}"/>
                             </StackPanel>
 
                             <Separator Height="1"/>
@@ -92,8 +89,7 @@
                             <StackPanel Orientation="Horizontal">
                                 <Label Style="{StaticResource LabelBaseName}"/>
                                 <Separator Style="{StaticResource SeparatorBetwenElementHorizontal}"/>
-                                <TextBox x:Name="TextBoxBaseName" Style="{StaticResource TextBoxBaseName}"
-                                         Text="{Binding Path=BaseName}"/>
+                                <TextBox Style="{StaticResource TextBoxBaseName}" Text="{Binding Path=BaseName}"/>
                             </StackPanel>
 
                             <Separator Height="1"/>
@@ -101,8 +97,7 @@
                             <StackPanel Orientation="Horizontal">
                                 <Label Style="{StaticResource LabelUserDB}"/>
                                 <Separator Style="{StaticResource SeparatorBetwenElementHorizontal}"/>
-                                <TextBox x:Name="TextBoxUserDB" Style="{StaticResource TextBoxUserDB}"
-                                         Text="{Binding Path=UserDB}"/>
+                                <TextBox Style="{StaticResource TextBoxUserDB}" Text="{Binding Path=UserDB}"/>
                             </StackPanel>
 
                             <Separator Height="1"/>
@@ -111,8 +106,7 @@
                                 <Label Style="{StaticResource LabelPasswordDB}"/>
                                 <Separator Style="{StaticResource SeparatorBetwenElementHorizontal}"/>
                                 <!--<PasswordBox x:Name="PasswordBoxPasswordDB" Style="{StaticResource PasswordBoxPasswordDB>-->
-                                <TextBox x:Name="PasswordBoxPasswordDB" Style="{StaticResource TextBoxUserDB}"
-                                         Text="{Binding Path=PasswordDB}"/>
+                                <TextBox Style="{StaticResource TextBoxUserDB}" Text="{Binding Path=PasswordDB}"/>
                             </StackPanel>
 
                         </StackPanel>
@@ -121,20 +115,23 @@
 
                     <Separator Height="1"/>
 
-                    <StackPanel Orientation="Horizontal">
-                        <Label Style="{StaticResource LabelURI}"/>
-                        <Separator Style="{StaticResource SeparatorBetwenElementHorizontal}"/>
-                        <TextBox x:Name="TextBoxURI" Style="{StaticResource TextBoxURI}" Width="470"
-                                 Text="{Binding Path=URI}"/>
-                    </StackPanel>
+                    <!--Header elements-->
+                    <StackPanel Orientation="Vertical">
+                        
+                        <StackPanel Orientation="Horizontal">
+                            <Label Style="{StaticResource LabelURI}"/>
+                            <Separator Style="{StaticResource SeparatorBetwenElementHorizontal}"/>
+                            <TextBox Style="{StaticResource TextBoxURI}" Width="470" Text="{Binding Path=URI}"/>
+                        </StackPanel>
 
-                    <Separator Height="1"/>
+                        <Separator Height="1"/>
 
-                    <StackPanel Orientation="Horizontal">
-                        <Label Style="{StaticResource LabelComment}"/>
-                        <Separator Style="{StaticResource SeparatorBetwenElementHorizontal}"/>
-                        <TextBox x:Name="TextBoxComment" Style="{StaticResource TextBoxComment}" Width="470"
-                                 Text="{Binding Path=Comment}"/>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Style="{StaticResource LabelComment}"/>
+                            <Separator Style="{StaticResource SeparatorBetwenElementHorizontal}"/>
+                            <TextBox Style="{StaticResource TextBoxComment}" Width="470" Text="{Binding Path=Comment}"/>
+                        </StackPanel>
+                    
                     </StackPanel>
 
                 </StackPanel>
@@ -155,6 +152,13 @@
 
                         <Button x:Name="GetSizeTable" Content=" Размеры таблиц " 
                                 Click="GetSizeTable_Click"/>
+
+                        <Separator Style="{StaticResource SeparatorBetwenElementVertical}"/>
+
+                        <StackPanel Orientation="Vertical">
+                            <Label Style="{StaticResource LabelDateModified}"/>
+                            <TextBox Text="{Binding Path=LastModified, StringFormat=\{0:dd.MM.yy HH:mm:ss\}}" IsReadOnly="True"/>
+                        </StackPanel>
 
                     </StackPanel>
 
